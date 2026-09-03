@@ -32,7 +32,10 @@
     "evacuationInfoUrl": "https://columbiacountyor.gov/departments/EmergencyManagement",
     "alertSignupUrl": "https://publicalerts.org/signup",
     "lastReviewed": "2026-09-03",
-    "sources": ["Columbia County Emergency Management", "PublicAlerts — Portland-metro regional alert system"]
+    "sources": [
+      "Columbia County Emergency Management",
+      "PublicAlerts — Portland-metro regional alert system"
+    ]
   },
   {
     "county": "Coos",
@@ -112,7 +115,10 @@
     "evacuationInfoUrl": "https://www.jeffersoncountyor.gov/sheriff/page/emergency-management",
     "alertSignupUrl": "https://oralert.gov",
     "lastReviewed": "2026-09-03",
-    "sources": ["Jefferson County Sheriff's Office — Emergency Management", "Oregon OR-Alert statewide alert portal"]
+    "sources": [
+      "Jefferson County Sheriff's Office — Emergency Management",
+      "Oregon OR-Alert statewide alert portal"
+    ]
   },
   {
     "county": "Josephine",
@@ -154,7 +160,10 @@
     "evacuationInfoUrl": "https://www.linnsheriff.org/linn-county-emergency-information-systems/",
     "alertSignupUrl": "https://oralert.gov/linn-county/index.html",
     "lastReviewed": "2026-09-03",
-    "sources": ["Linn County Sheriff's Office — Emergency Information Systems", "Oregon OR-Alert statewide alert portal"]
+    "sources": [
+      "Linn County Sheriff's Office — Emergency Information Systems",
+      "Oregon OR-Alert statewide alert portal"
+    ]
   },
   {
     "county": "Malheur",
@@ -182,7 +191,10 @@
     "evacuationInfoUrl": "https://www.multco.us/em",
     "alertSignupUrl": "https://multco.us/info/do-you-want-receive-emergency-notifications-sign-public-alerts",
     "lastReviewed": "2026-09-03",
-    "sources": ["Multnomah County Office of Emergency Management", "PublicAlerts — Portland-metro regional alert system"]
+    "sources": [
+      "Multnomah County Office of Emergency Management",
+      "PublicAlerts — Portland-metro regional alert system"
+    ]
   },
   {
     "county": "Polk",
@@ -241,7 +253,10 @@
     "evacuationInfoUrl": "https://www.washingtoncountyor.gov/emergency",
     "alertSignupUrl": "https://www.publicalerts.org/signup",
     "lastReviewed": "2026-09-03",
-    "sources": ["Washington County Emergency Operations", "PublicAlerts — Portland-metro regional alert system"]
+    "sources": [
+      "Washington County Emergency Operations",
+      "PublicAlerts — Portland-metro regional alert system"
+    ]
   },
   {
     "county": "Wheeler",
