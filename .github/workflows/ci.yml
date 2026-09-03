@@ -26,6 +26,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Check curated content links
+        run: npm run check:links
+
       - name: Build
         run: npm run build
 

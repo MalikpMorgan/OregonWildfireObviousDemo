@@ -1,1 +1,91 @@
-{}
+{
+  "app": {
+    "title": "Oregon Fire & Air",
+    "tagline": "Wildfire, smoke, and relief information for Oregon — plain-language, bilingual, and sourced.",
+    "comingSoon": "The live map, incident detail, and air quality surfaces are coming in upcoming releases.",
+    "languageLabel": "Language",
+    "skipToMain": "Skip to main content"
+  },
+  "nav": {
+    "label": "Dashboard sections",
+    "evacuation": "Evacuation",
+    "relief": "Relief & help"
+  },
+  "evacuation": {
+    "title": "Evacuation levels",
+    "intro": "Oregon uses three statewide evacuation levels. Know what each level means and what to do — levels are set by local officials and shown on official county and state maps.",
+    "officialSourceLabel": "Official wording source",
+    "levelLabel": "Level {{level}}",
+    "levels": {
+      "1": {
+        "name": "BE READY",
+        "description": "Be aware of danger in the area. Stay informed… This is the time to pack and prepare to leave."
+      },
+      "2": {
+        "name": "BE SET",
+        "description": "There is significant danger in the area. Be prepared to leave at a moment's notice… Leave if you feel unsafe. You don't need to wait for another evacuation notice."
+      },
+      "3": {
+        "name": "GO NOW!",
+        "description": "Leave immediately! There is extreme danger in the area… Do not return to the area until officials announce the area is safe."
+      }
+    },
+    "countyFinder": {
+      "title": "Find your county's evacuation and alert links",
+      "intro": "Evacuation status is set county by county. Sign up for your county's official emergency alerts and check its evacuation page during an incident.",
+      "searchLabel": "Search counties",
+      "searchPlaceholder": "e.g. Deschutes",
+      "count": "{{shown}} of {{total}} counties",
+      "empty": "No counties match \"{{query}}\".",
+      "evacuationLink": "Evacuation info",
+      "alertLink": "Alert sign-up",
+      "noVerifiedLink": "No verified link — see sources",
+      "lastReviewed": "Links verified {{date}}",
+      "sourcesLabel": "Sources",
+      "countyLinksLabel": "{{county}} County evacuation and alert links"
+    }
+  },
+  "relief": {
+    "title": "Relief & assistance",
+    "intro": "Official and nonprofit resources for shelter, financial help, and fire information. Every entry is sourced and carries a review date.",
+    "visitLink": "Visit {{name}}",
+    "phoneLabel": "Call {{phone}}",
+    "lastReviewed": "Reviewed {{date}}",
+    "sourcesLabel": "Sources",
+    "groups": {
+      "shelter": "Shelters",
+      "assistance": "Assistance & referrals",
+      "information": "Official information & maps",
+      "restrictions": "Fire restrictions"
+    },
+    "items": {
+      "211info": {
+        "description": "Oregon's community resource directory — shelter and resource questions during wildfires. Language interpreters available."
+      },
+      "red-cross-region": {
+        "description": "Cascades Region page with local disaster response, volunteer, and donation information."
+      },
+      "red-cross-shelter-finder": {
+        "description": "Map of open Red Cross shelters — the same shelter source the FEMA app uses."
+      },
+      "oregon-oem": {
+        "description": "State emergency management — disaster assistance programs, including Individual Assistance after federal declarations."
+      },
+      "oregon-wildfire-portal": {
+        "description": "The state's official wildfire portal: evacuation levels, preparedness, and current response."
+      },
+      "fema-disaster-assistance": {
+        "description": "Apply for federal assistance and upload documents after a presidential disaster declaration."
+      },
+      "osfm-maps": {
+        "description": "Official Oregon incident maps in one place: the NWCC large fire map, the Oregon Wildfire Dashboard, and the AQI map."
+      },
+      "odf-restrictions": {
+        "description": "Public and industrial fire restrictions and closures from the Oregon Department of Forestry."
+      },
+      "odf-restrictions-map": {
+        "description": "Interactive map of public fire restrictions across ODF protection areas."
+      }
+    }
+  }
+}

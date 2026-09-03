@@ -1,1 +1,91 @@
-{}
+{
+  "app": {
+    "title": "Oregon Fire & Air",
+    "tagline": "Información de incendios, humo y ayuda para Oregón — en lenguaje claro, bilingüe y con fuentes oficiales.",
+    "comingSoon": "El mapa en vivo, el detalle de incidentes y la calidad del aire llegarán en próximas versiones.",
+    "languageLabel": "Idioma",
+    "skipToMain": "Saltar al contenido principal"
+  },
+  "nav": {
+    "label": "Secciones del tablero",
+    "evacuation": "Evacuación",
+    "relief": "Ayuda y recursos"
+  },
+  "evacuation": {
+    "title": "Niveles de evacuación",
+    "intro": "Oregón usa tres niveles de evacuación en todo el estado. Sepa qué significa cada nivel y qué hacer — los niveles los establecen los oficiales locales y se muestran en los mapas oficiales del condado y del estado.",
+    "officialSourceLabel": "Fuente oficial del texto",
+    "levelLabel": "Nivel {{level}}",
+    "levels": {
+      "1": {
+        "name": "ESTÉ PREPARADO",
+        "description": "Esté consciente del peligro en su zona. Prepárese para evacuar: manténgase informado, anótese para recibir alertas de emergencia en su condado y tenga preparado su plan y el kit para llevar."
+      },
+      "2": {
+        "name": "ESTÉ LISTO",
+        "description": "Esté listo para evacuar en cualquier momento. Alto peligro en su zona: siga su plan de emergencia y agarre su kit de provisiones para llevar. Las condiciones pueden cambiar rápidamente; si usted se siente inseguro, váyase."
+      },
+      "3": {
+        "name": "¡VÁYASE AHORA!",
+        "description": "¡Váyase inmediatamente! Alto peligro en su zona. Váyase sin demora: no es seguro quedarse. No regrese a la zona hasta que las autoridades anuncien que el área es segura."
+      }
+    },
+    "countyFinder": {
+      "title": "Encuentre los enlaces de evacuación y alertas de su condado",
+      "intro": "El estado de evacuación se define condado por condado. Anótese en las alertas oficiales de emergencia de su condado y consulte su página de evacuación durante un incidente.",
+      "searchLabel": "Buscar condados",
+      "searchPlaceholder": "p. ej. Deschutes",
+      "count": "{{shown}} de {{total}} condados",
+      "empty": "Ningún condado coincide con \"{{query}}\".",
+      "evacuationLink": "Información de evacuación",
+      "alertLink": "Anotarse en alertas",
+      "noVerifiedLink": "Sin enlace verificado — vea las fuentes",
+      "lastReviewed": "Enlaces verificados el {{date}}",
+      "sourcesLabel": "Fuentes",
+      "countyLinksLabel": "Enlaces de evacuación y alertas del condado de {{county}}"
+    }
+  },
+  "relief": {
+    "title": "Ayuda y recursos",
+    "intro": "Recursos oficiales y sin fines de lucro para refugio, ayuda económica e información sobre incendios. Cada entrada tiene fuentes y fecha de revisión.",
+    "visitLink": "Visitar {{name}}",
+    "phoneLabel": "Llamar al {{phone}}",
+    "lastReviewed": "Revisado el {{date}}",
+    "sourcesLabel": "Fuentes",
+    "groups": {
+      "shelter": "Refugios",
+      "assistance": "Asistencia y referencias",
+      "information": "Información y mapas oficiales",
+      "restrictions": "Restricciones de incendios"
+    },
+    "items": {
+      "211info": {
+        "description": "Directorio de recursos comunitarios de Oregón: preguntas sobre refugios y recursos durante incendios. Hay intérpretes de idiomas disponibles."
+      },
+      "red-cross-region": {
+        "description": "Página de la región Cascades con información sobre la respuesta local a desastres, el voluntariado y las donaciones."
+      },
+      "red-cross-shelter-finder": {
+        "description": "Mapa de refugios abiertos de la Cruz Roja: la misma fuente de refugios que usa la aplicación de FEMA."
+      },
+      "oregon-oem": {
+        "description": "Manejo de emergencias del estado: programas de asistencia por desastre, incluida la Asistencia Individual después de declaraciones federales."
+      },
+      "oregon-wildfire-portal": {
+        "description": "El portal oficial de incendios forestales del estado: niveles de evacuación, preparación y respuesta actual."
+      },
+      "fema-disaster-assistance": {
+        "description": "Solicite asistencia federal y suba documentos después de una declaración presidencial de desastre."
+      },
+      "osfm-maps": {
+        "description": "Los mapas oficiales de incidentes de Oregón en un solo lugar: el mapa de grandes incendios de NWCC, el Oregon Wildfire Dashboard y el mapa de AQI."
+      },
+      "odf-restrictions": {
+        "description": "Restricciones y cierres de incendios públicos e industriales del Departamento Forestal de Oregón."
+      },
+      "odf-restrictions-map": {
+        "description": "Mapa interactivo de restricciones de incendios públicos en las áreas de protección de ODF."
+      }
+    }
+  }
+}
