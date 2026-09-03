@@ -1,0 +1,419 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.002.1",
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.002.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.002.1",
+    "areaDesc": "West Central Mountains; Lower Treasure Valley; Harney County; Malheur County",
+    "geocode": {
+     "SAME": [
+      "016003",
+      "016045",
+      "016085",
+      "016087",
+      "016027",
+      "016073",
+      "016075",
+      "041025",
+      "041045"
+     ],
+     "UGC": [
+      "IDZ011",
+      "IDZ012",
+      "ORZ061",
+      "ORZ063"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/forecast/IDZ011",
+     "https://api.weather.gov/zones/forecast/IDZ012",
+     "https://api.weather.gov/zones/forecast/ORZ061",
+     "https://api.weather.gov/zones/forecast/ORZ063"
+    ],
+    "references": [
+     {
+      "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.d9b857d4b1ec903a215651111d823dd52a0a7ee1.002.1",
+      "identifier": "urn:oid:2.49.0.1.840.0.d9b857d4b1ec903a215651111d823dd52a0a7ee1.002.1",
+      "sender": "w-nws.webmaster@noaa.gov",
+      "sent": "2026-09-02T14:03:00-06:00"
+     }
+    ],
+    "sent": "2026-09-03T02:06:00-06:00",
+    "effective": "2026-09-03T02:06:00-06:00",
+    "onset": "2026-09-03T15:00:00-06:00",
+    "expires": "2026-09-03T15:00:00-06:00",
+    "ends": "2026-09-04T19:00:00-06:00",
+    "status": "Actual",
+    "messageType": "Update",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Possible",
+    "urgency": "Future",
+    "event": "Flash Flood Watch",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Boise ID",
+    "headline": "Flash Flood Watch issued September 3 at 2:06AM MDT until September 4 at 7:00PM MDT by NWS Boise ID",
+    "description": "* WHAT...Flash flooding and debris flows caused by excessive rainfall\ncontinue to be possible over the Second Flat, Bald Mountain, Fox,\nPowder River, Tartar burn scars.\n\n* WHERE...Portions of southwest Idaho, including the following areas,\nLower Treasure Valley and West Central Mountains and southeast\nOregon, including the following areas, Harney County and Malheur\nCounty.\n\n* WHEN...From this afternoon through Friday evening.\n\n* IMPACTS...Heavy rainfall over the Second Flat, Bald Mountain, Fox,\nPowder River, Tartar burn scar is expected up to and during the\nperiod of the watch. Residents near the Second Flat, Bald Mountain,\nFox, Powder River, Tartar burn scar should prepare for potential\ndebris flow. Be sure to stay up to date with information from local\nauthorities. Heavy rainfall could trigger flash flooding or debris\nflows in and near recent wildfire burn scars.\n\n* ADDITIONAL DETAILS...\n- National Weather Service Meteorologists are forecasting heavy\nrainfall over the burn scar, which may lead to flash flooding and\ndebris flows.\n- Some locations that may experience flash flooding include...\nMonument Peak, Mosquito Mountain, Warm Springs Reservoir, Coleman\nMountain, Tencent Lake, Heath Lake, Lime, Dixie, Indian Head\nMountain, Henley Basin, Buena Vista Field Station, Sheep\nMountain, Sweedes Landing, McChord Butte and Bald Butte.\n- https://www.weather.gov/safety/flood",
+    "instruction": "You should monitor later forecasts and be prepared to take action\nshould Flash Flood Warnings be issued.",
+    "response": "Monitor",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FFABOI"
+     ],
+     "WMOidentifier": [
+      "WGUS65 KBOI 030806"
+     ],
+     "NWSheadline": [
+      "FLASH FLOOD WATCH FOR THE SECOND FLAT, BALD MOUNTAIN, FOX, POWDER RIVER, TARTAR BURN SCARS REMAINS IN EFFECT FROM THIS AFTERNOON THROUGH FRIDAY EVENING"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.CON.KBOI.FF.A.0005.260903T2100Z-260905T0100Z/"
+     ],
+     "eventEndingTime": [
+      "2026-09-04T19:00:00-06:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "FFA"
+     ],
+     "NationalWeatherService": [
+      "FFA"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.003.1",
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.003.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.c960036a3675c495427517ef63a38f2cecd49e86.003.1",
+    "areaDesc": "Baker County",
+    "geocode": {
+     "SAME": [
+      "041001"
+     ],
+     "UGC": [
+      "ORZ062"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/forecast/ORZ062"
+    ],
+    "references": [
+     {
+      "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.d9b857d4b1ec903a215651111d823dd52a0a7ee1.002.1",
+      "identifier": "urn:oid:2.49.0.1.840.0.d9b857d4b1ec903a215651111d823dd52a0a7ee1.002.1",
+      "sender": "w-nws.webmaster@noaa.gov",
+      "sent": "2026-09-02T14:03:00-06:00"
+     }
+    ],
+    "sent": "2026-09-03T02:06:00-06:00",
+    "effective": "2026-09-03T02:06:00-06:00",
+    "onset": "2026-09-03T15:00:00-06:00",
+    "expires": "2026-09-03T15:00:00-06:00",
+    "ends": "2026-09-04T19:00:00-06:00",
+    "status": "Actual",
+    "messageType": "Update",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Possible",
+    "urgency": "Future",
+    "event": "Flash Flood Watch",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Boise ID",
+    "headline": "Flash Flood Watch issued September 3 at 2:06AM MDT until September 4 at 7:00PM MDT by NWS Boise ID",
+    "description": "* WHAT...Flash flooding and debris flows caused by excessive rainfall\ncontinue to be possible over the Anthony burn scar.\n\n* WHERE...A portion of northeast Oregon, including the following\ncounty, Baker County.\n\n* WHEN...From this afternoon through Friday afternoon.\n\n* IMPACTS...Heavy rainfall over the Anthony burn scar is expected up\nto and during the period of the watch. Residents near the Anthony\nburn scar should prepare for potential debris flow. Be sure to stay\nup to date with information from local authorities. Heavy rainfall\ncould trigger flash flooding or debris flows in and near recent\nwildfire burn scars.\n\n* ADDITIONAL DETAILS...\n- National Weather Service Meteorologists are forecasting heavy\nrainfall over the burn scar, which may lead to flash flooding and\ndebris flows.\n- Some locations that may experience flash flooding include...\nMainly rural areas of Baker County zone.\n- https://www.weather.gov/safety/flood",
+    "instruction": "You should monitor later forecasts and be prepared to take action\nshould Flash Flood Warnings be issued.",
+    "response": "Monitor",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "FFABOI"
+     ],
+     "WMOidentifier": [
+      "WGUS65 KBOI 030806"
+     ],
+     "NWSheadline": [
+      "FLASH FLOOD WATCH FOR THE ANTHONY BURN SCAR REMAINS IN EFFECT FROM THIS AFTERNOON THROUGH FRIDAY AFTERNOON"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "EAS-ORG": [
+      "WXR"
+     ],
+     "VTEC": [
+      "/O.CON.KBOI.FF.A.0005.260903T2100Z-260905T0100Z/"
+     ],
+     "eventEndingTime": [
+      "2026-09-04T19:00:00-06:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "FFA"
+     ],
+     "NationalWeatherService": [
+      "FFA"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+   "type": "Feature",
+   "geometry": null,
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+    "areaDesc": "Northern Rosebud/Northern Treasure Counties",
+    "geocode": {
+     "SAME": [
+      "030087",
+      "030103"
+     ],
+     "UGC": [
+      "MTZ130"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/fire/MTZ130"
+    ],
+    "references": [],
+    "sent": "2026-09-03T02:53:00-06:00",
+    "effective": "2026-09-03T02:53:00-06:00",
+    "onset": "2026-09-03T12:00:00-06:00",
+    "expires": "2026-09-03T21:00:00-06:00",
+    "ends": "2026-09-03T21:00:00-06:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "event": "Red Flag Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Billings MT",
+    "headline": "Red Flag Warning issued September 3 at 2:53AM MDT until September 3 at 9:00PM MDT by NWS Billings MT",
+    "description": "The National Weather Service in Billings has issued a Red Flag\nWarning...which is in effect from noon today to 9 PM MDT this\nevening.\n\n* IMPACTS: Low humidities and strong gusty winds will create\nerratic fire behavior.\n\n* AFFECTED AREA:\nIn Southeast MT Fire Zone...130.\n\n* COUNTIES AFFECTED:\nIn Southeast MT...Rosebud...Treasure.\n\n* WIND: Southwest 10 to 20 mph with gusts up to 30 mph.\n\n* HUMIDITY: As low as 14 percent.\n\n* ADDITIONAL DETAILS: For MTZ123 and MTZ126, the worst conditions\nare expected across the lower elevations.",
+    "instruction": "A Red Flag Warning means that critical fire weather conditions are\neither occurring now, or will shortly. A combination of strong\nwinds, low relative humidity, and warm temperatures can contribute\nto extreme fire behavior.",
+    "response": "Prepare",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "RFWBYZ"
+     ],
+     "WMOidentifier": [
+      "WWUS85 KBYZ 030853"
+     ],
+     "NWSheadline": [
+      "RED FLAG WARNING IN EFFECT FROM NOON TODAY TO 9 PM MDT THIS EVENING"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "VTEC": [
+      "/O.EXA.KBYZ.FW.W.0010.260903T1800Z-260904T0300Z/"
+     ],
+     "eventEndingTime": [
+      "2026-09-03T21:00:00-06:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "NWS"
+     ],
+     "NationalWeatherService": [
+      "FWW"
+     ]
+    }
+   }
+  },
+  {
+   "id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -90.76,
+       29.21
+      ],
+      [
+       -90.7,
+       29.24
+      ],
+      [
+       -90.65,
+       29.31
+      ],
+      [
+       -90.61,
+       29.34
+      ],
+      [
+       -90.57,
+       29.35
+      ],
+      [
+       -90.54,
+       29.39
+      ],
+      [
+       -90.46,
+       29.39
+      ],
+      [
+       -90.39,
+       29.35
+      ],
+      [
+       -90.35,
+       29.36
+      ],
+      [
+       -90.21,
+       29.21
+      ],
+      [
+       -90.22,
+       29.19
+      ],
+      [
+       -90.18,
+       29.1
+      ],
+      [
+       -90.2,
+       29.08
+      ],
+      [
+       -90.11,
+       28.43
+      ],
+      [
+       -90.69,
+       28.47
+      ],
+      [
+       -90.8,
+       29.01
+      ],
+      [
+       -90.76,
+       29.21
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "@id": "https://api.weather.gov/alerts/urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+    "@type": "wx:Alert",
+    "id": "urn:oid:2.49.0.1.840.0.ce8ab46e042d97b48f2ae18e9be541b060fa522a.001.1",
+    "areaDesc": "Northern Rosebud/Northern Treasure Counties",
+    "geocode": {
+     "SAME": [
+      "030087",
+      "030103"
+     ],
+     "UGC": [
+      "MTZ130"
+     ]
+    },
+    "affectedZones": [
+     "https://api.weather.gov/zones/fire/MTZ130"
+    ],
+    "references": [],
+    "sent": "2026-09-03T02:53:00-06:00",
+    "effective": "2026-09-03T02:53:00-06:00",
+    "onset": "2026-09-03T12:00:00-06:00",
+    "expires": "2026-09-03T21:00:00-06:00",
+    "ends": "2026-09-03T21:00:00-06:00",
+    "status": "Actual",
+    "messageType": "Alert",
+    "category": "Met",
+    "severity": "Severe",
+    "certainty": "Likely",
+    "urgency": "Expected",
+    "event": "Red Flag Warning",
+    "sender": "w-nws.webmaster@noaa.gov",
+    "senderName": "NWS Billings MT",
+    "headline": "Red Flag Warning issued September 3 at 2:53AM MDT until September 3 at 9:00PM MDT by NWS Billings MT",
+    "description": "The National Weather Service in Billings has issued a Red Flag\nWarning...which is in effect from noon today to 9 PM MDT this\nevening.\n\n* IMPACTS: Low humidities and strong gusty winds will create\nerratic fire behavior.\n\n* AFFECTED AREA:\nIn Southeast MT Fire Zone...130.\n\n* COUNTIES AFFECTED:\nIn Southeast MT...Rosebud...Treasure.\n\n* WIND: Southwest 10 to 20 mph with gusts up to 30 mph.\n\n* HUMIDITY: As low as 14 percent.\n\n* ADDITIONAL DETAILS: For MTZ123 and MTZ126, the worst conditions\nare expected across the lower elevations.",
+    "instruction": "A Red Flag Warning means that critical fire weather conditions are\neither occurring now, or will shortly. A combination of strong\nwinds, low relative humidity, and warm temperatures can contribute\nto extreme fire behavior.",
+    "response": "Prepare",
+    "note": null,
+    "parameters": {
+     "AWIPSidentifier": [
+      "RFWBYZ"
+     ],
+     "WMOidentifier": [
+      "WWUS85 KBYZ 030853"
+     ],
+     "NWSheadline": [
+      "RED FLAG WARNING IN EFFECT FROM NOON TODAY TO 9 PM MDT THIS EVENING"
+     ],
+     "BLOCKCHANNEL": [
+      "EAS",
+      "NWEM",
+      "CMAS"
+     ],
+     "VTEC": [
+      "/O.EXA.KBYZ.FW.W.0010.260903T1800Z-260904T0300Z/"
+     ],
+     "eventEndingTime": [
+      "2026-09-03T21:00:00-06:00"
+     ]
+    },
+    "scope": "Public",
+    "code": "IPAWSv1.0",
+    "language": "en-US",
+    "web": "http://www.weather.gov",
+    "eventCode": {
+     "SAME": [
+      "NWS"
+     ],
+     "NationalWeatherService": [
+      "FWW"
+     ]
+    }
+   }
+  }
+ ]
+}
