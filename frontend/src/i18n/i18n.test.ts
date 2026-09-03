@@ -9,6 +9,15 @@ describe('i18n setup', () => {
     expect(i18n.options.fallbackLng).toEqual(['en'])
   })
 
+  it('keeps <html lang> in lockstep with the interface language', async () => {
+    // Screen readers only switch pronunciation when the document language
+    // follows the actual content language (WCAG 3.1.1).
+    await i18n.changeLanguage('es')
+    expect(document.documentElement.lang).toBe('es')
+    await i18n.changeLanguage('en')
+    expect(document.documentElement.lang).toBe('en')
+  })
+
   it('ships populated en/es translation namespaces with full map-surface parity', () => {
     const bundles = Object.fromEntries(
       supportedLanguages.map((language) => [

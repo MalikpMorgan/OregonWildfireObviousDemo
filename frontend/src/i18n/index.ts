@@ -21,4 +21,13 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 })
 
+// Keep the document language in lockstep with the UI (WCAG 3.1.1/3.1.2):
+// screen readers switch pronunciation only when <html lang> follows the
+// content's actual language.
+function syncDocumentLanguage(language: string): void {
+  if (typeof document !== 'undefined') document.documentElement.lang = language
+}
+syncDocumentLanguage(defaultLanguage)
+i18n.on('languageChanged', syncDocumentLanguage)
+
 export default i18n

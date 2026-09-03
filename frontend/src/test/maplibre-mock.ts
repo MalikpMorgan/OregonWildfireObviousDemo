@@ -38,6 +38,7 @@ export class MockMap {
   })
   setFilter = vi.fn()
   flyTo = vi.fn()
+  jumpTo = vi.fn()
   getZoom = vi.fn(() => 6)
   addControl = vi.fn()
   remove = vi.fn()
@@ -105,4 +106,10 @@ export const setWorkerUrl = vi.fn()
 // { Map, Popup } from 'maplibre-gl' resolve to the doubles under vi.mock.
 export { MockMap as Map, MockPopup as Popup }
 
-export default { Map: MockMap, Popup: MockPopup, NavigationControl, AttributionControl, setWorkerUrl }
+export default {
+  Map: MockMap,
+  Popup: MockPopup,
+  NavigationControl,
+  AttributionControl,
+  setWorkerUrl,
+}
