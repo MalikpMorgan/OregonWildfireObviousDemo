@@ -3,7 +3,12 @@
     "title": "Oregon Fire & Air",
     "tagline": "Información de incendios, humo y ayuda para Oregón — en lenguaje claro, bilingüe y con fuentes oficiales.",
     "languageLabel": "Idioma",
-    "skipToMain": "Saltar al contenido principal"
+    "skipToMain": "Saltar al contenido principal",
+    "offlineTitle": "Sin conexión",
+    "offlineBody": "Los datos en vivo de incendios y calidad del aire no pueden actualizarse sin conexión. La guía de evacuación y el directorio de ayuda en las otras pestañas siguen funcionando desde esta página."
+  },
+  "state": {
+    "staleNote": "Mostrando los últimos datos válidos guardados para este feed."
   },
   "nav": {
     "map": "Mapa de incendios",
@@ -15,9 +20,13 @@
     "title": "Mapa de incendios en vivo",
     "intro": "Incidentes activos de incendios forestales y alertas meteorológicas de incendio para Oregón, a partir de fuentes federales oficiales. Seleccione un incidente en la lista o en el mapa: ambas vistas permanecen sincronizadas.",
     "loading": "Cargando datos de incendios en vivo…",
+    "loadingIncidents": "Cargando puntos de incidentes de NIFC WFIGS…",
+    "loadingPerimeters": "Cargando polígonos de perímetro de NIFC WFIGS…",
+    "loadingAlerts": "Cargando alertas de peligro de incendio del NWS…",
     "listHeading": "Incidentes activos",
-    "listEmpty": "No hay incidentes activos reportados en este momento.",
     "listCaption": "Use las flechas arriba y abajo para moverse entre los incidentes. Presione Enter para seleccionar uno.",
+    "emptyAsOf": "No hay incidentes activos reportados al {{date}}.",
+    "emptySourcesLabel": "Consulte las fuentes oficiales:",
     "listCount": "{{count}} incidentes activos",
     "noSelection": "Seleccione un incidente en la lista o en el mapa para ver sus detalles.",
     "county": "Condado",
@@ -69,9 +78,9 @@
   "air": {
     "title": "Calidad del aire",
     "intro": "Los valores del US AQI son estimaciones de modelo para cada comunidad; para lecturas autorizadas de monitores, use los enlaces oficiales de abajo.",
-    "loading": "Cargando datos de calidad del aire…",
+    "loading": "Cargando datos de calidad del aire de Open-Meteo…",
     "failed": "El feed de calidad del aire no está disponible en este momento.",
-    "stale": "Mostrando los últimos datos válidos.",
+    "empty": "No hay lecturas de calidad del aire disponibles en este momento.",
     "modelEstimate": "Estimación de modelo",
     "usAqiLabel": "US AQI",
     "notReported": "No reportado",

@@ -645,3 +645,138 @@ input:focus-visible {
     color: rgb(255 255 255 / 65%);
   }
 }
+
+/* Feed envelope states (spec §Behavior & states) */
+.feed-skeleton {
+  border: 1px dashed rgb(0 0 0 / 20%);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feed-skeleton__label {
+  font-size: 0.8rem;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.feed-skeleton__bar {
+  height: 0.65rem;
+  border-radius: 0.3rem;
+  background: rgb(0 0 0 / 8%);
+  animation: feed-skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.feed-skeleton__bar--short {
+  width: 55%;
+}
+
+@keyframes feed-skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-skeleton__bar {
+    animation: none;
+  }
+}
+
+.feed-state__stamp,
+.feed-state__stale,
+.feed-state__failed {
+  font-size: 0.8rem;
+}
+
+.feed-state__stamp {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.feed-state__stale {
+  border-left: 3px solid #b45309;
+  padding: 0.25rem 0 0.25rem 0.6rem;
+}
+
+.feed-state__failed {
+  border-left: 3px solid #b91c1c;
+  padding: 0.25rem 0 0.25rem 0.6rem;
+}
+
+.feed-state__link {
+  color: inherit;
+}
+
+.feed-state__empty {
+  border: 1px dashed rgb(0 0 0 / 25%);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.feed-state__empty-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.feed-state__empty-list a {
+  color: inherit;
+}
+
+/* Offline shell */
+.offline-banner {
+  border: 1px solid rgb(0 0 0 / 25%);
+  border-left: 4px solid #b45309;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.offline-banner__title {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.offline-banner__body {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.offline-banner__call {
+  color: inherit;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feed-skeleton {
+    border-color: #3a3936;
+  }
+
+  .feed-skeleton__bar {
+    background: rgb(255 255 255 / 12%);
+  }
+
+  .feed-state__empty {
+    border-color: #3a3936;
+  }
+
+  .offline-banner {
+    border-color: #3a3936;
+  }
+}
