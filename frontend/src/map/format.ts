@@ -39,6 +39,18 @@ export function escapeHtml(value: string): string {
     .replaceAll("'", '&#39;')
 }
 
+/**
+ * The feed's own update time, localized; null when absent or unparseable.
+ * Unlike incidentUpdatedMs (best-known for tooltips), the detail panel shows
+ * only what the feed itself reported — a missing time renders "not reported".
+ */
+export function formatFeedUpdate(updatedAt: string | null, locale: string): string | null {
+  if (!updatedAt) return null
+  const parsed = Date.parse(updatedAt)
+  if (Number.isNaN(parsed)) return null
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(parsed)
+}
+
 export interface TooltipLabels {
   county: string
   updated: string

@@ -2,7 +2,6 @@
   "app": {
     "title": "Oregon Fire & Air",
     "tagline": "Información de incendios, humo y ayuda para Oregón — en lenguaje claro, bilingüe y con fuentes oficiales.",
-    "comingSoon": "El mapa en vivo, el detalle de incidentes y la calidad del aire llegarán en próximas versiones.",
     "languageLabel": "Idioma",
     "skipToMain": "Saltar al contenido principal"
   },
@@ -20,8 +19,6 @@
     "listEmpty": "No hay incidentes activos reportados en este momento.",
     "listCaption": "Use las flechas arriba y abajo para moverse entre los incidentes. Presione Enter para seleccionar uno.",
     "listCount": "{{count}} incidentes activos",
-    "selectedHeading": "Incidente seleccionado",
-    "detailPlaceholder": "La vista completa de detalles del incidente llegará en la próxima versión.",
     "noSelection": "Seleccione un incidente en la lista o en el mapa para ver sus detalles.",
     "county": "Condado",
     "acres": "Acres",
@@ -55,6 +52,19 @@
     "legendGibsNote": "Capa satelital opcional, desactivada de forma predeterminada.",
     "gibsToggleLabel": "Capa satelital de puntos calientes (NASA GIBS)",
     "openOfficialPage": "Abrir la página oficial de la alerta del NWS"
+  },
+  "detail": {
+    "heading": "Detalles del incidente",
+    "containmentValue": "{{pct}}% de contención",
+    "narrativeHeading": "Sobre este incendio",
+    "narrativeLoading": "Buscando el relato oficial del incidente…",
+    "narrativeMissing": "Este incidente aún no tiene un relato oficial en InciWeb.",
+    "narrativeFailed": "El feed del relato del incidente no está disponible en este momento.",
+    "narrativeLastUpdated": "Relato actualizado por última vez el {{date}}",
+    "readNarrative": "Leer más en InciWeb",
+    "officialFallback": "Abrir la página oficial del incidente en InciWeb",
+    "sourceAttribution": "Fuente: NIFC WFIGS, {{age}}",
+    "narrativeSourceAttribution": "Fuente: InciWeb, {{age}}"
   },
   "evacuation": {
     "title": "Niveles de evacuación",

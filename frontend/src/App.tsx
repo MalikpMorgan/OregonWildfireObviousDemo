@@ -96,11 +96,6 @@ function App() {
           ) : (
             <ReliefPage />
           )}
-          {/* The notice still promises the detail and air-quality surfaces; it
-              would contradict the live map if shown on the map tab. */}
-          {activeSurface !== 'map' && (
-            <p className="app-shell__notice app-shell__notice--inline">{t('app.comingSoon')}</p>
-          )}
         </div>
       </main>
     </div>

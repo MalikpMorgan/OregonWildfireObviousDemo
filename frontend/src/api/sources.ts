@@ -5,4 +5,5 @@
 
 export const WFIGS_SOURCE_URL = 'https://data-nifc.opendata.arcgis.com/'
 export const NWS_SOURCE_URL = 'https://api.weather.gov/alerts/active?area=OR'
+export const INCIWEB_SOURCE_URL = 'https://inciweb.wildfire.gov/'
 export const GIBS_SOURCE_URL = 'https://worldview.earthdata.nasa.gov/'

@@ -16,6 +16,7 @@ import {
 } from './maplibre-style'
 import {
   makeAlertsEnvelope,
+  makeEmptyNarrativeEnvelope,
   makeFiresEnvelope,
   makePerimetersEnvelope,
   recordedAlerts,
@@ -33,6 +34,9 @@ vi.mock('../api/client', () => ({
   getFires: () => Promise.resolve(makeFiresEnvelope(now)),
   getPerimeters: () => Promise.resolve(makePerimetersEnvelope(now)),
   getAlerts: () => Promise.resolve(makeAlertsEnvelope(now)),
+  // No recorded incident joins an InciWeb record — the detail panel links the
+  // official page; tests that need narrative content mock getNarrative directly.
+  getNarrative: () => Promise.resolve(makeEmptyNarrativeEnvelope(now)),
 }))
 
 beforeEach(() => {
@@ -102,8 +106,8 @@ describe('MapSurface', () => {
     listbox.focus()
     fireEvent.keyDown(listbox, { key: 'ArrowDown' })
     fireEvent.keyDown(listbox, { key: 'Enter' })
-    // Selection flows back through the surface: detail slot + map popup.
-    expect(screen.getByTestId('detail-slot')).toHaveTextContent(
+    // Selection flows back through the surface: detail panel + map popup.
+    expect(screen.getByTestId('incident-detail')).toHaveTextContent(
       new RegExp(recordedIncidents[1].name),
     )
     await waitFor(() => {
@@ -124,7 +128,7 @@ describe('MapSurface', () => {
         screen.getByRole('option', { name: new RegExp(recordedIncidents[0].name) }),
       ).toHaveAttribute('aria-selected', 'true')
     })
-    expect(screen.getByTestId('detail-slot')).toHaveTextContent(
+    expect(screen.getByTestId('incident-detail')).toHaveTextContent(
       new RegExp(recordedIncidents[0].name),
     )
   })
@@ -136,11 +140,11 @@ describe('MapSurface', () => {
         features: [{ properties: { id: FIRST_INCIDENT_ID } }],
       })
     })
-    await screen.findByTestId('detail-slot')
+    await screen.findByTestId('incident-detail')
     fireEvent.keyDown(screen.getByRole('listbox', { name: 'Active incidents' }), {
       key: 'Escape',
     })
-    expect(screen.queryByTestId('detail-slot')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('incident-detail')).not.toBeInTheDocument()
     expect(
       screen.getByText(/Select an incident from the list or the map/),
     ).toBeInTheDocument()

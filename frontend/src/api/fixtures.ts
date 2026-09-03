@@ -5,10 +5,16 @@
  * serve for those inputs. Keep values in sync with the recorded files.
  */
 
-import { NWS_SOURCE_URL, WFIGS_SOURCE_URL } from './sources'
-import type { FeedResult, FireAlert, FireIncident, FirePerimeter } from './types'
+import { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL } from './sources'
+import type {
+  FeedResult,
+  FireAlert,
+  FireIncident,
+  FirePerimeter,
+  IncidentNarrative,
+} from './types'
 
-export { NWS_SOURCE_URL, WFIGS_SOURCE_URL }
+export { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL }
 
 export const recordedIncidents: FireIncident[] = [
   {
@@ -250,5 +256,68 @@ export function makeStaleAlertsEnvelope(now: number): FeedResult<FireAlert> {
     status: 'stale',
     data: recordedAlerts,
     meta: { source: 'nws', sourceUrl: NWS_SOURCE_URL, fetchedAt: now - 30 * 60_000 },
+  }
+}
+
+/** An incident with every optional field blank — the worst-case detail fixture. */
+export const allNullIncident: FireIncident = {
+  source: 'wfigs',
+  sourceUrl: WFIGS_SOURCE_URL,
+  fetchedAt: 1788394810457,
+  incidentId: '2026-OR973S-000311',
+  name: 'Cedar Creek',
+  county: null,
+  acres: null,
+  containmentPct: null,
+  cause: null,
+  updatedAt: null,
+  lat: 44.5,
+  lon: -121.8,
+  inciwebId: null,
+}
+
+/** Narrative content mirrors the API's recorded InciWeb snapshot (2026-09-03):
+ * cleaned "Incident Overview" prose plus the parsed last-updated date. */
+const NARRATIVE_SUMMARY =
+  'The North Cayuse Fire is located on the Umatilla National Forest, ' +
+  'approximately 12 miles east of Pilot Rock. Crews are mopping up along the ' +
+  'perimeter and restoration work has begun.'
+
+export function makeNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'ok',
+    data: [
+      {
+        source: 'inciweb',
+        sourceUrl: INCIWEB_SOURCE_URL,
+        fetchedAt: now,
+        incidentId: recordedIncidents[0].incidentId,
+        inciwebId: 'OR973S',
+        title: 'OR973S North Cayuse',
+        summary: NARRATIVE_SUMMARY,
+        lastUpdated: '2026-09-03',
+        link: 'https://inciweb.wildfire.gov/incident-information/or973s-north-cayuse',
+      },
+    ],
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+/** The incident is not on InciWeb — the detail panel links the official page. */
+export function makeEmptyNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'ok',
+    data: [],
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+/** The narrative feed failed with no last-good copy. */
+export function makeFailedNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'failed',
+    data: null,
+    error: 'InciWeb feed unavailable',
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
   }
 }

@@ -63,3 +63,16 @@ export interface FeedResult<T> {
   meta: SourceMeta
   error?: string | null
 }
+
+/** InciWeb narrative summary joined to a WFIGS incident for the detail view. */
+export interface IncidentNarrative extends SourceMeta {
+  /** The WFIGS UFI the narrative was resolved for. */
+  incidentId: string
+  /** InciWeb incident code, e.g. "ORMHF". */
+  inciwebId: string
+  title: string
+  summary: string
+  lastUpdated: string | null
+  /** Official incident page on InciWeb. */
+  link: string
+}
