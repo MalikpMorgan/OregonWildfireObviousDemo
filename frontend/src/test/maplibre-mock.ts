@@ -98,8 +98,11 @@ export class MockPopup {
 export class NavigationControl {}
 export class AttributionControl {}
 
+// maplibre-style.ts calls this at module scope; the double ignores it.
+export const setWorkerUrl = vi.fn()
+
 // Aliases matching maplibre-gl's real named exports, so components importing
 // { Map, Popup } from 'maplibre-gl' resolve to the doubles under vi.mock.
 export { MockMap as Map, MockPopup as Popup }
 
-export default { Map: MockMap, Popup: MockPopup, NavigationControl, AttributionControl }
+export default { Map: MockMap, Popup: MockPopup, NavigationControl, AttributionControl, setWorkerUrl }

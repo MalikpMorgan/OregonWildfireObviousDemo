@@ -6,7 +6,15 @@
  * live-verified path (§1.6, verification log #13: HTTP 200 image/png).
  */
 
+import { setWorkerUrl } from 'maplibre-gl'
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import type { FireAlert, FireIncident, FirePerimeter } from '../api/types'
+
+// MapLibre v6 resolves its tile worker next to the bundler's module URL, which
+// Vite never co-deploys — without this the worker 404s and no tiles ever load.
+// The pair is served verbatim from public/maplibre (refreshed by the copy
+// script whenever maplibre-gl is upgraded).
+setWorkerUrl(workerUrl)
 
 export const BASEMAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json'
 
