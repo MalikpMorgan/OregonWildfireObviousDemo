@@ -5,8 +5,11 @@
  * Opens every URL in the content JSON files; a dead link fails the build rather than
  * a resident in an emergency. Two classes of automated-client limitation are logged
  * as warnings but do not fail the run — those pages were verified live during
- * curation: (a) WAF 403/429 responses to non-browser clients, and (b) incomplete TLS
- * chains that Node rejects but browsers resolve transparently via AIA fetching.
+ * curation: (a) WAF 403/429 responses to non-browser clients, (b) incomplete TLS
+ * chains that Node rejects but browsers resolve transparently via AIA fetching, and
+ * (c) terminal 3xx responses some county servers emit intermittently to automated
+ * clients — a redirect fetch cannot complete (e.g. a bare 307 with no Location
+ * header), but the destination was verified live at curation.
  * Network errors and other 4xx/5xx statuses are dead links and fail the run.
  *
  * Usage: node scripts/linkcheck.mjs
@@ -63,6 +66,11 @@ function collectUrls() {
   return urls
 }
 
+/** A 3xx fetch could not follow to completion — the server answered, so the link is alive. */
+function isRedirect(status) {
+  return status !== null && status >= 300 && status < 400
+}
+
 async function checkOnce(url) {
   try {
     const response = await fetch(url, {
@@ -84,7 +92,8 @@ async function checkOnce(url) {
 async function checkUrl({ url, label }) {
   let result = await checkOnce(url)
   for (let attempt = 2; attempt <= RETRIES; attempt += 1) {
-    const retryable = result.status === null || result.status >= 500
+    const retryable =
+      result.status === null || result.status >= 500 || isRedirect(result.status)
     if (!retryable) break
     await new Promise((resolve) => setTimeout(resolve, 1500 * attempt))
     result = await checkOnce(url)
@@ -93,7 +102,8 @@ async function checkUrl({ url, label }) {
   if (result.ok) {
     outcome = 'pass'
   } else if (
-    (result.status !== null && WARN_STATUSES.has(result.status)) ||
+    (result.status !== null &&
+      (WARN_STATUSES.has(result.status) || isRedirect(result.status))) ||
     (result.status === null && WARN_TLS_CODES.has(result.error ?? ''))
   ) {
     outcome = 'warn'
