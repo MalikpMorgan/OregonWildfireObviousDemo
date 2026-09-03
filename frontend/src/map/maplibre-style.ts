@@ -7,14 +7,17 @@
  */
 
 import { setWorkerUrl } from 'maplibre-gl'
-import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 import type { FireAlert, FireIncident, FirePerimeter } from '../api/types'
 
-// MapLibre v6 resolves its tile worker next to the bundler's module URL, which
-// Vite never co-deploys — without this the worker 404s and no tiles ever load.
-// The pair is served verbatim from public/maplibre (refreshed by the copy
-// script whenever maplibre-gl is upgraded).
-setWorkerUrl(workerUrl)
+// The tile worker is served verbatim from public/maplibre — copied from the
+// installed maplibre-gl by copy:maplibre-worker on every build. That pair is
+// self-contained: the worker's one relative import, ./maplibre-gl-shared.mjs,
+// resolves to its sibling under any static host, including the FastAPI
+// StaticFiles mount that serves dist/. A bundler-emitted copy (?url) instead
+// strands that import in dist/assets, where the shared chunk is never emitted
+// — the worker never instantiates and the map renders nothing.
+const MAPLIBRE_WORKER_URL = '/maplibre/maplibre-gl-worker.mjs'
+setWorkerUrl(MAPLIBRE_WORKER_URL)
 
 export const BASEMAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json'
 
@@ -96,7 +99,9 @@ export function perimetersToGeoJson(
 
 /** Zone-based alerts (null geometry) have no map area and are dropped here; the
  * list view still shows them. */
-export function alertsWithGeometryToGeoJson(alerts: FireAlert[]): FeatureCollectionOf<PolygonFeature> {
+export function alertsWithGeometryToGeoJson(
+  alerts: FireAlert[],
+): FeatureCollectionOf<PolygonFeature> {
   return {
     type: 'FeatureCollection',
     features: alerts.flatMap((alert) =>
