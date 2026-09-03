@@ -120,6 +120,7 @@
       "intro": "El estado de evacuación se define condado por condado. Anótese en las alertas oficiales de emergencia de su condado y consulte su página de evacuación durante un incidente.",
       "searchLabel": "Buscar condados",
       "searchPlaceholder": "p. ej. Deschutes",
+      "countyHeading": "Condado de {{name}}",
       "count": "{{shown}} de {{total}} condados",
       "empty": "Ningún condado coincide con \"{{query}}\".",
       "evacuationLink": "Información de evacuación",

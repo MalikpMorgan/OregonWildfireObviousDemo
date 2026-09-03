@@ -103,6 +103,8 @@ describe('App shell', () => {
     ).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /Nivel 1 – ESTÉ PREPARADO$/ })).toBeInTheDocument()
     expect(screen.getByText('36 de 36 condados')).toBeInTheDocument()
+    // County names localize too — "Condado de X", not a hardcoded English suffix.
+    expect(screen.getByRole('heading', { name: 'Condado de Baker' })).toBeInTheDocument()
     expect(screen.getByRole('tab', { name: 'Ayuda y recursos' })).toBeInTheDocument()
   })
 
@@ -113,6 +115,19 @@ describe('App shell', () => {
     fireEvent.click(screen.getByRole('tab', { name: 'Relief & help' }))
     expect((await axe(container)).violations).toEqual([])
     fireEvent.click(screen.getByRole('tab', { name: 'Evacuation' }))
+    expect((await axe(container)).violations).toEqual([])
+  })
+
+  it('has no detectable axe accessibility violations in Spanish on any surface', async () => {
+    // Locked decision: full Spanish parity — the a11y contract holds in both
+    // languages, so axe runs against the ES bundles as well.
+    const { container } = render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: 'ES' }))
+    // Map surface (the default).
+    expect((await axe(container)).violations).toEqual([])
+    fireEvent.click(screen.getByRole('tab', { name: 'Ayuda y recursos' }))
+    expect((await axe(container)).violations).toEqual([])
+    fireEvent.click(screen.getByRole('tab', { name: 'Evacuación' }))
     expect((await axe(container)).violations).toEqual([])
   })
 })

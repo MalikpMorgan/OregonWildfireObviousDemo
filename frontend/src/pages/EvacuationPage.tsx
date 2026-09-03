@@ -88,7 +88,7 @@ function EvacuationPage() {
           <ul className="county-grid">
             {visibleCounties.map((entry) => (
               <li key={entry.county} className="county-card">
-                <h4>{entry.county} County</h4>
+                <h4>{t('evacuation.countyFinder.countyHeading', { name: entry.county })}</h4>
                 <div className="card-links">
                   {entry.evacuationInfoUrl ? (
                     <a href={entry.evacuationInfoUrl} target="_blank" rel="noopener noreferrer">
