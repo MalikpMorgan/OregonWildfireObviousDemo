@@ -64,6 +64,14 @@ export interface FeedResult<T> {
   error?: string | null
 }
 
+/** US AQI for one location (Open-Meteo — a model estimate, not a monitor reading). */
+export interface AirReading extends SourceMeta {
+  location: string
+  usAqi: number | null
+  /** Text label — meaning never carried by color alone. */
+  categoryLabel: string
+}
+
 /** InciWeb narrative summary joined to a WFIGS incident for the detail view. */
 export interface IncidentNarrative extends SourceMeta {
   /** The WFIGS UFI the narrative was resolved for. */

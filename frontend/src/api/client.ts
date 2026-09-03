@@ -6,6 +6,7 @@
  */
 
 import type {
+  AirReading,
   FeedResult,
   FireAlert,
   FireIncident,
@@ -34,4 +35,11 @@ export const getAlerts: FeedFetcher<FireAlert> = () => fetchEnvelope('/api/alert
 /** InciWeb narrative for one incident; an empty data list means no InciWeb record. */
 export function getNarrative(incidentId: string): Promise<FeedResult<IncidentNarrative>> {
   return fetchEnvelope(`/api/incidents/${encodeURIComponent(incidentId)}/narrative`)
+}
+
+/** US AQI for the reference cities (and the point when lat/lon are given). */
+export const getAqiReference: FeedFetcher<AirReading> = () => fetchEnvelope('/api/aqi')
+
+export function getAqiAt(lat: number, lon: number): FeedFetcher<AirReading> {
+  return () => fetchEnvelope(`/api/aqi?lat=${lat}&lon=${lon}`)
 }

@@ -66,6 +66,27 @@
     "sourceAttribution": "Fuente: NIFC WFIGS, {{age}}",
     "narrativeSourceAttribution": "Fuente: InciWeb, {{age}}"
   },
+  "air": {
+    "title": "Calidad del aire",
+    "intro": "Los valores del US AQI son estimaciones de modelo para cada comunidad; para lecturas autorizadas de monitores, use los enlaces oficiales de abajo.",
+    "loading": "Cargando datos de calidad del aire…",
+    "failed": "El feed de calidad del aire no está disponible en este momento.",
+    "stale": "Mostrando los últimos datos válidos.",
+    "modelEstimate": "Estimación de modelo",
+    "usAqiLabel": "US AQI",
+    "notReported": "No reportado",
+    "yourLocation": "Su ubicación",
+    "locating": "Detectando su ubicación…",
+    "reading": "Leyendo la calidad del aire en su ubicación…",
+    "pointFailed": "La lectura de su ubicación no está disponible en este momento.",
+    "geoDenied": "La ubicación está desactivada. Mostramos ciudades de referencia de Oregón; elija la más cercana a usted.",
+    "geoUnavailable": "No se pudo detectar su ubicación. Mostramos ciudades de referencia de Oregón.",
+    "geoUnsupported": "Este navegador no puede detectar la ubicación. Mostramos ciudades de referencia de Oregón.",
+    "useMyLocation": "Usar mi ubicación",
+    "citiesHeading": "Ciudades de referencia de Oregón",
+    "sourceLine": "Fuente: Open-Meteo, {{age}}",
+    "officialContext": "Datos oficiales de monitores y avisos de humo por condado:"
+  },
   "evacuation": {
     "title": "Niveles de evacuación",
     "intro": "Oregón usa tres niveles de evacuación en todo el estado. Sepa qué significa cada nivel y qué hacer — los niveles los establecen los oficiales locales y se muestran en los mapas oficiales del condado y del estado.",

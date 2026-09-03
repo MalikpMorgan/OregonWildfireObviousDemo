@@ -5,8 +5,14 @@
  * serve for those inputs. Keep values in sync with the recorded files.
  */
 
-import { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL } from './sources'
+import {
+  INCIWEB_SOURCE_URL,
+  NWS_SOURCE_URL,
+  OPENMETEO_SOURCE_URL,
+  WFIGS_SOURCE_URL,
+} from './sources'
 import type {
+  AirReading,
   FeedResult,
   FireAlert,
   FireIncident,
@@ -14,7 +20,7 @@ import type {
   IncidentNarrative,
 } from './types'
 
-export { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL }
+export { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, OPENMETEO_SOURCE_URL, WFIGS_SOURCE_URL }
 
 export const recordedIncidents: FireIncident[] = [
   {
@@ -319,5 +325,55 @@ export function makeFailedNarrativeEnvelope(now: number): FeedResult<IncidentNar
     data: null,
     error: 'InciWeb feed unavailable',
     meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+
+// --- Air quality (surface 3) — mirrors the API's Open-Meteo reference cities ---
+
+/** One Open-Meteo reading; values are the API's recorded fixture snapshot. */
+function aqiReading(location: string, usAqi: number, fetchedAt: number): AirReading {
+  const categoryLabel = usAqi <= 50 ? 'Good' : usAqi <= 100 ? 'Moderate' : 'Unhealthy for Sensitive Groups'
+  return {
+    location,
+    usAqi,
+    categoryLabel,
+    source: 'open-meteo',
+    sourceUrl: OPENMETEO_SOURCE_URL,
+    fetchedAt,
+  }
+}
+
+/** The eight reference cities — six urban, two rural (Pendleton, La Grande). */
+export function makeAqiCitiesEnvelope(
+  now: number,
+  status: 'ok' | 'failed' = 'ok',
+): FeedResult<AirReading> {
+  return {
+    status,
+    data:
+      status === 'failed'
+        ? null
+        : [
+            aqiReading('Portland', 54, now),
+            aqiReading('Salem', 38, now),
+            aqiReading('Eugene', 61, now),
+            aqiReading('Bend', 27, now),
+            aqiReading('Medford', 73, now),
+            aqiReading('Pendleton', 41, now),
+            aqiReading('Klamath Falls', 88, now),
+            aqiReading('La Grande', 33, now),
+          ],
+    meta: { source: 'open-meteo', sourceUrl: OPENMETEO_SOURCE_URL, fetchedAt: now },
+    error: status === 'failed' ? 'Open-Meteo unavailable' : null,
+  }
+}
+
+/** The user-location reading served for the geolocation point query. */
+export function makeAqiPointEnvelope(now: number): FeedResult<AirReading> {
+  return {
+    status: 'ok',
+    data: [aqiReading('Your location', 45, now)],
+    meta: { source: 'open-meteo', sourceUrl: OPENMETEO_SOURCE_URL, fetchedAt: now },
   }
 }

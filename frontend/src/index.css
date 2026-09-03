@@ -550,3 +550,98 @@ input:focus-visible {
     background: rgb(255 255 255 / 12%);
   }
 }
+
+.aqi-panel {
+  margin-top: 1.5rem;
+}
+
+.aqi-panel__intro,
+.aqi-panel__note,
+.aqi-panel__meta,
+.aqi-panel__geo-note,
+.aqi-panel__official {
+  color: rgb(0 0 0 / 60%);
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem;
+}
+
+.aqi-panel__grid {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 0.5rem;
+}
+
+.aqi-panel__grid--single {
+  grid-template-columns: 1fr;
+  max-width: 16rem;
+}
+
+.aqi-card {
+  border: 1px solid rgb(0 0 0 / 15%);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.aqi-card__location {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.aqi-card__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.aqi-card__value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.aqi-card__unit {
+  color: rgb(0 0 0 / 60%);
+  font-size: 0.8rem;
+}
+
+.aqi-card__category {
+  font-size: 0.9rem;
+}
+
+.aqi-card__estimate {
+  color: rgb(0 0 0 / 60%);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.aqi-panel__retry {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid rgb(0 0 0 / 25%);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aqi-card {
+    border-color: #3a3936;
+  }
+
+  .aqi-panel__intro,
+  .aqi-panel__note,
+  .aqi-panel__meta,
+  .aqi-panel__geo-note,
+  .aqi-panel__official,
+  .aqi-card__unit,
+  .aqi-card__estimate {
+    color: rgb(255 255 255 / 65%);
+  }
+}

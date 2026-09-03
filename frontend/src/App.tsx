@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import MapSurface from './map/MapSurface'
+import AirQualityPanel from './air/AirQualityPanel'
 import EvacuationPage from './pages/EvacuationPage'
 import ReliefPage from './pages/ReliefPage'
 
@@ -90,7 +91,11 @@ function App() {
       <main id="main-content">
         <div role="tabpanel" id={`panel-${activeSurface}`} aria-labelledby={`tab-${activeSurface}`}>
           {activeSurface === 'map' ? (
-            <MapSurface />
+            // The primary surface pairs the live map with the air-quality panel.
+            <>
+              <MapSurface />
+              <AirQualityPanel />
+            </>
           ) : activeSurface === 'evacuation' ? (
             <EvacuationPage />
           ) : (
