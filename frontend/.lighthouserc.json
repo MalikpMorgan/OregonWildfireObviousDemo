@@ -1,0 +1,21 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./dist",
+      "numberOfRuns": 1,
+      "settings": {
+        "onlyCategories": ["accessibility", "best-practices"]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 1 }],
+        "categories:best-practices": "off",
+        "categories:seo": "off",
+        "categories:performance": "off",
+        "categories:pwa": "off",
+        "categories:manifest": "off"
+      }
+    }
+  }
+}

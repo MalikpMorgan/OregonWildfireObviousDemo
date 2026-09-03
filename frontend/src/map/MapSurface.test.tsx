@@ -72,9 +72,7 @@ describe('MapSurface', () => {
         screen.getByRole('option', { name: new RegExp(`${incident.name}`) }),
       ).toBeInTheDocument()
     }
-    expect(
-      screen.getByText(`${recordedIncidents.length} active incidents`),
-    ).toBeInTheDocument()
+    expect(screen.getByText(`${recordedIncidents.length} active incidents`)).toBeInTheDocument()
     // Point-only incidents still render: every incident is in the list even
     // when fewer incidents carry perimeter polygons.
     expect(recordedPerimeters.length).toBeLessThan(recordedIncidents.length)
@@ -145,9 +143,30 @@ describe('MapSurface', () => {
       key: 'Escape',
     })
     expect(screen.queryByTestId('incident-detail')).not.toBeInTheDocument()
-    expect(
-      screen.getByText(/Select an incident from the list or the map/),
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Select an incident from the list or the map/)).toBeInTheDocument()
+  })
+
+  it('skips the selection flight when the user prefers reduced motion', async () => {
+    // Spec §Verification row 8: reduced motion honored — the decorative
+    // flyTo is replaced by an instant jumpTo reframe.
+    vi.stubGlobal('matchMedia', (query: string) => ({
+      matches: query === '(prefers-reduced-motion: reduce)',
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    }))
+    try {
+      const { map } = await renderLoadedSurface()
+      const listbox = screen.getByRole('listbox', { name: 'Active incidents' })
+      listbox.focus()
+      fireEvent.keyDown(listbox, { key: 'ArrowDown' })
+      fireEvent.keyDown(listbox, { key: 'Enter' })
+      await screen.findByTestId('incident-detail')
+      expect(map.jumpTo).toHaveBeenCalled()
+      expect(map.flyTo).not.toHaveBeenCalled()
+    } finally {
+      vi.unstubAllGlobals()
+    }
   })
 
   it('has no detectable axe accessibility violations on the list view', async () => {

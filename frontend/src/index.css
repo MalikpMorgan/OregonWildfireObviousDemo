@@ -84,7 +84,8 @@ body {
 
 .lang-toggle button {
   font: inherit;
-  padding: 0.3rem 0.7rem;
+  padding: 0.4rem 0.75rem;
+  min-height: 2.25rem;
   border: 1px solid #d8d4ca;
   border-radius: 0.35rem;
   background: transparent;
@@ -100,6 +101,9 @@ body {
 
 .tabs {
   display: flex;
+  /* Spanish tab labels exceed a 360px viewport — wrap to a second row
+     instead of overflowing horizontally (mobile-first audit). */
+  flex-wrap: wrap;
   gap: 0.25rem;
   border-bottom: 1px solid #d8d4ca;
   margin-bottom: 1.5rem;
@@ -439,9 +443,12 @@ input:focus-visible {
 
 .incident-list__option {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.35rem 0.5rem;
+  padding: 0.55rem 0.6rem;
+  /* Crisis users tap these rows on phones — keep a 44px-class target. */
+  min-height: 2.75rem;
   border-radius: 0.25rem;
   cursor: pointer;
 }
@@ -579,6 +586,14 @@ input:focus-visible {
   max-width: 16rem;
 }
 
+/* Mobile-first: AQI cards collapse to one column on small viewports — the
+   2-up grid only earns its space from 480px up. */
+@media (max-width: 480px) {
+  .aqi-panel__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .aqi-card {
   border: 1px solid rgb(0 0 0 / 15%);
   border-radius: 0.5rem;
@@ -622,7 +637,9 @@ input:focus-visible {
 .aqi-panel__retry {
   font: inherit;
   font-size: 0.85rem;
-  padding: 0.1rem 0.5rem;
+  padding: 0.55rem 0.9rem;
+  /* 44px-class touch target — this button re-runs geolocation on phones. */
+  min-height: 2.75rem;
   border: 1px solid rgb(0 0 0 / 25%);
   border-radius: 0.35rem;
   background: transparent;

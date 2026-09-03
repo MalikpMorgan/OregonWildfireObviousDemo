@@ -42,6 +42,19 @@ import {
 } from './maplibre-style'
 import { incidentTooltipHtml } from './format'
 
+/**
+ * True when the user asked the OS to minimize non-essential animation. The
+ * selection flight is decorative — reduced-motion users get an instant reframe
+ * instead (spec §Verification row 8: "reduced-motion honored").
+ */
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
 interface MapViewProps {
   incidents: FireIncident[]
   perimeters: FirePerimeter[]
@@ -201,7 +214,12 @@ export default function MapView({
       .setHTML(incidentTooltipHtml(incident, tooltipLabels))
       .addTo(map)
     if (map.getZoom() < SELECTED_ZOOM) {
-      map.flyTo({ center: [incident.lon, incident.lat], zoom: SELECTED_ZOOM, speed: 1.2 })
+      // The flight is decorative; reduced-motion users reframe instantly.
+      if (prefersReducedMotion()) {
+        map.jumpTo({ center: [incident.lon, incident.lat], zoom: SELECTED_ZOOM })
+      } else {
+        map.flyTo({ center: [incident.lon, incident.lat], zoom: SELECTED_ZOOM, speed: 1.2 })
+      }
     }
   }, [layersReady, selectedId, incidents, tooltipLabels])
 

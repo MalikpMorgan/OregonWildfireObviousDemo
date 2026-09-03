@@ -120,6 +120,7 @@
       "intro": "Evacuation status is set county by county. Sign up for your county's official emergency alerts and check its evacuation page during an incident.",
       "searchLabel": "Search counties",
       "searchPlaceholder": "e.g. Deschutes",
+      "countyHeading": "{{name}} County",
       "count": "{{shown}} of {{total}} counties",
       "empty": "No counties match \"{{query}}\".",
       "evacuationLink": "Evacuation info",
