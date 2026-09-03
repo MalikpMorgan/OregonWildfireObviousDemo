@@ -1,0 +1,263 @@
+[
+  {
+    "county": "Baker",
+    "evacuationInfoUrl": "https://www.bakercountyor.gov/emergency/emergency-management.html",
+    "alertSignupUrl": "https://www.bakercountyor.gov/emergency/baker-county-emergency-notification-system.html",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Baker County Emergency Management"]
+  },
+  {
+    "county": "Benton",
+    "evacuationInfoUrl": "https://sheriff.bentoncountyor.gov/emergency-management/",
+    "alertSignupUrl": "https://sheriff.bentoncountyor.gov/linn-benton-alert/",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Benton County Sheriff's Office — Emergency Management"]
+  },
+  {
+    "county": "Clackamas",
+    "evacuationInfoUrl": "https://www.clackamas.us/dm",
+    "alertSignupUrl": "https://www.clackamas.us/dm/publicalerts",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Clackamas County Disaster Management"]
+  },
+  {
+    "county": "Clatsop",
+    "evacuationInfoUrl": "https://www.clatsopcounty.gov/621/Emergency-Management",
+    "alertSignupUrl": "https://www.clatsopcounty.gov/622/ClatsopALERTS",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Clatsop County Emergency Management"]
+  },
+  {
+    "county": "Columbia",
+    "evacuationInfoUrl": "https://columbiacountyor.gov/departments/EmergencyManagement",
+    "alertSignupUrl": "https://publicalerts.org/signup",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Columbia County Emergency Management", "PublicAlerts — Portland-metro regional alert system"]
+  },
+  {
+    "county": "Coos",
+    "evacuationInfoUrl": "https://co.coos.or.us/emergency-management",
+    "alertSignupUrl": "https://co.coos.or.us/everbridge-emergency-notification-system",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Coos County Emergency Management"]
+  },
+  {
+    "county": "Crook",
+    "evacuationInfoUrl": "https://co.crook.or.us/departments/emergency-services",
+    "alertSignupUrl": "https://www.alertcrookcounty.org/",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Crook County Emergency Services", "Alert Crook County notification program"]
+  },
+  {
+    "county": "Curry",
+    "evacuationInfoUrl": "https://www.currycountyor.gov/departments/emergency_management/index.php",
+    "alertSignupUrl": "https://oralert.gov",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Curry County Emergency Management", "Oregon OR-Alert statewide alert portal"]
+  },
+  {
+    "county": "Deschutes",
+    "evacuationInfoUrl": "https://sheriff.deschutes.org/services/emergency-management/evacuations/",
+    "alertSignupUrl": "https://sheriff.deschutes.org/services/emergency-management/alerts/",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Deschutes County Sheriff's Office — Emergency Management"]
+  },
+  {
+    "county": "Douglas",
+    "evacuationInfoUrl": "https://www.douglascountyor.gov/856/Emergency-Management",
+    "alertSignupUrl": "https://oralert.gov",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Douglas County Emergency Management", "Oregon OR-Alert statewide alert portal"]
+  },
+  {
+    "county": "Gilliam",
+    "evacuationInfoUrl": "https://www.gilliamcountyor.gov/government/offices/sheriff/emergency_management.php",
+    "alertSignupUrl": "https://member.everbridge.net/892807736724035/login",
+    "lastReviewed": "2026-09-03",
+    "sources": [
+      "Gilliam County Sheriff's Office — Emergency Management",
+      "Regional Everbridge alert system (Wasco–Hood River–Sherman–Gilliam)"
+    ]
+  },
+  {
+    "county": "Grant",
+    "evacuationInfoUrl": "https://www.grantcountyoregon.net/149/Emergency-Management",
+    "alertSignupUrl": "https://www.grantcountyoregon.net/198/Everbridge",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Grant County Emergency Management"]
+  },
+  {
+    "county": "Harney",
+    "evacuationInfoUrl": "https://harneycountyor.gov/emergency-management/",
+    "alertSignupUrl": "https://oralert.gov",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Harney County Emergency Management", "Oregon OR-Alert statewide alert portal"]
+  },
+  {
+    "county": "Hood River",
+    "evacuationInfoUrl": "https://hoodriversheriff.com/what-we-do/emergency-management",
+    "alertSignupUrl": "https://member.everbridge.net/892807736721762/login",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Hood River County Sheriff's Office — Emergency Management"]
+  },
+  {
+    "county": "Jackson",
+    "evacuationInfoUrl": "https://www.jacksoncountyor.gov/departments/emergency_management/index.php",
+    "alertSignupUrl": "https://www.jacksoncountyor.gov/departments/emergency_management/jackson_alerts_.php",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Jackson County Emergency Management"]
+  },
+  {
+    "county": "Jefferson",
+    "evacuationInfoUrl": "https://www.jeffersoncountyor.gov/sheriff/page/emergency-management",
+    "alertSignupUrl": "https://oralert.gov",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Jefferson County Sheriff's Office — Emergency Management", "Oregon OR-Alert statewide alert portal"]
+  },
+  {
+    "county": "Josephine",
+    "evacuationInfoUrl": "https://www.josephinecounty.gov/departments/emergency_management/index.php",
+    "alertSignupUrl": "https://www.josephinecounty.gov/departments/emergency_management/citizen_alert.php",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Josephine County Emergency Management"]
+  },
+  {
+    "county": "Klamath",
+    "evacuationInfoUrl": "https://klamathcountyor.gov/1362/Emergency-Management-Program",
+    "alertSignupUrl": "https://member.everbridge.net/730354893717522/login",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Klamath County Emergency Management"]
+  },
+  {
+    "county": "Lake",
+    "evacuationInfoUrl": "https://www.lakecountyor.org/government/emergency_management.php",
+    "alertSignupUrl": "https://www.lakecountyor.org/government/lake_county_or_alerts.php",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Lake County Emergency Management"]
+  },
+  {
+    "county": "Lane",
+    "evacuationInfoUrl": "https://www.lanecountyor.gov/government/county_departments/emergency_management/alerts___evacuation/evacuation_information",
+    "alertSignupUrl": "https://www.lanecountyor.gov/sign_up_for_notifications",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Lane County Emergency Management"]
+  },
+  {
+    "county": "Lincoln",
+    "evacuationInfoUrl": "https://www.co.lincoln.or.us/234/Emergency-Management",
+    "alertSignupUrl": "https://www.co.lincoln.or.us/789/Lincoln-Alerts",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Lincoln County Emergency Management"]
+  },
+  {
+    "county": "Linn",
+    "evacuationInfoUrl": "https://www.linnsheriff.org/linn-county-emergency-information-systems/",
+    "alertSignupUrl": "https://oralert.gov/linn-county/index.html",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Linn County Sheriff's Office — Emergency Information Systems", "Oregon OR-Alert statewide alert portal"]
+  },
+  {
+    "county": "Malheur",
+    "evacuationInfoUrl": "https://www.malheurco.org/emergency-management/",
+    "alertSignupUrl": "https://member.everbridge.net/148882356961282/new",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Malheur County Emergency Management"]
+  },
+  {
+    "county": "Marion",
+    "evacuationInfoUrl": "https://www.co.marion.or.us/PW/EmergencyManagement",
+    "alertSignupUrl": "https://www.co.marion.or.us/PW/EmergencyManagement/Pages/alerts.aspx",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Marion County Emergency Management"]
+  },
+  {
+    "county": "Morrow",
+    "evacuationInfoUrl": "https://www.morrowcountyor.gov/emergency",
+    "alertSignupUrl": "https://www.morrowcountyor.gov/sheriff/page/emergency-notifications",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Morrow County Emergency Management", "Morrow County Sheriff's Office"]
+  },
+  {
+    "county": "Multnomah",
+    "evacuationInfoUrl": "https://www.multco.us/em",
+    "alertSignupUrl": "https://multco.us/info/do-you-want-receive-emergency-notifications-sign-public-alerts",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Multnomah County Office of Emergency Management", "PublicAlerts — Portland-metro regional alert system"]
+  },
+  {
+    "county": "Polk",
+    "evacuationInfoUrl": "https://www.polkcountyor.gov/220/Emergency-Management",
+    "alertSignupUrl": "https://www.polkcountyor.gov/366/Emergency-Alerts",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Polk County Emergency Management"]
+  },
+  {
+    "county": "Sherman",
+    "evacuationInfoUrl": "https://www.shermancountyor.gov/204/Emergency-Services",
+    "alertSignupUrl": "https://member.everbridge.net/892807736724035/login",
+    "lastReviewed": "2026-09-03",
+    "sources": [
+      "Sherman County Emergency Services",
+      "Regional Everbridge alert system (Wasco–Hood River–Sherman–Gilliam)"
+    ]
+  },
+  {
+    "county": "Tillamook",
+    "evacuationInfoUrl": "https://www.tillamookcounty.gov/emergency-management",
+    "alertSignupUrl": "https://member.everbridge.net/index/453003085611895",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Tillamook County Emergency Management"]
+  },
+  {
+    "county": "Umatilla",
+    "evacuationInfoUrl": "https://www.co.umatilla.or.us/departments/sheriffs-office/emergency-management",
+    "alertSignupUrl": "https://member.everbridge.net/2590041373147145/login",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Umatilla County Sheriff's Office — Emergency Management"]
+  },
+  {
+    "county": "Union",
+    "evacuationInfoUrl": "https://unioncountyor.gov/emergency-services/",
+    "alertSignupUrl": "https://unioncountyor.gov/union-county-emergency-notification-system/",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Union County Emergency Services"]
+  },
+  {
+    "county": "Wallowa",
+    "evacuationInfoUrl": "https://www.co.wallowa.or.us/emergency-services",
+    "alertSignupUrl": "https://www.co.wallowa.or.us/wallowa-county-air/page/sign-alerts",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Wallowa County Emergency Services", "Wallowa County AIR alert system"]
+  },
+  {
+    "county": "Wasco",
+    "evacuationInfoUrl": "https://www.wascocountyor.gov/departments/emergency_management/index.php",
+    "alertSignupUrl": "https://member.everbridge.net/453003085612392/login",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Wasco County Emergency Management"]
+  },
+  {
+    "county": "Washington",
+    "evacuationInfoUrl": "https://www.washingtoncountyor.gov/emergency",
+    "alertSignupUrl": "https://www.publicalerts.org/signup",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Washington County Emergency Operations", "PublicAlerts — Portland-metro regional alert system"]
+  },
+  {
+    "county": "Wheeler",
+    "evacuationInfoUrl": "https://www.wheelercountyoregon.com/emergency-management",
+    "alertSignupUrl": "https://member.everbridge.net/index/892807736724035",
+    "lastReviewed": "2026-09-03",
+    "sources": [
+      "Wheeler County Emergency Management",
+      "Regional Everbridge alert system (Wasco–Hood River–Sherman–Gilliam)"
+    ]
+  },
+  {
+    "county": "Yamhill",
+    "evacuationInfoUrl": "https://yamhillcounty.gov/160/Emergency-Management",
+    "alertSignupUrl": "https://member.everbridge.net/892807736727638/login",
+    "lastReviewed": "2026-09-03",
+    "sources": ["Yamhill County Emergency Management"]
+  }
+]
