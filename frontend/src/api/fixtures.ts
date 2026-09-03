@@ -5,10 +5,22 @@
  * serve for those inputs. Keep values in sync with the recorded files.
  */
 
-import { NWS_SOURCE_URL, WFIGS_SOURCE_URL } from './sources'
-import type { FeedResult, FireAlert, FireIncident, FirePerimeter } from './types'
+import {
+  INCIWEB_SOURCE_URL,
+  NWS_SOURCE_URL,
+  OPENMETEO_SOURCE_URL,
+  WFIGS_SOURCE_URL,
+} from './sources'
+import type {
+  AirReading,
+  FeedResult,
+  FireAlert,
+  FireIncident,
+  FirePerimeter,
+  IncidentNarrative,
+} from './types'
 
-export { NWS_SOURCE_URL, WFIGS_SOURCE_URL }
+export { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, OPENMETEO_SOURCE_URL, WFIGS_SOURCE_URL }
 
 export const recordedIncidents: FireIncident[] = [
   {
@@ -250,5 +262,118 @@ export function makeStaleAlertsEnvelope(now: number): FeedResult<FireAlert> {
     status: 'stale',
     data: recordedAlerts,
     meta: { source: 'nws', sourceUrl: NWS_SOURCE_URL, fetchedAt: now - 30 * 60_000 },
+  }
+}
+
+/** An incident with every optional field blank — the worst-case detail fixture. */
+export const allNullIncident: FireIncident = {
+  source: 'wfigs',
+  sourceUrl: WFIGS_SOURCE_URL,
+  fetchedAt: 1788394810457,
+  incidentId: '2026-OR973S-000311',
+  name: 'Cedar Creek',
+  county: null,
+  acres: null,
+  containmentPct: null,
+  cause: null,
+  updatedAt: null,
+  lat: 44.5,
+  lon: -121.8,
+  inciwebId: null,
+}
+
+/** Narrative content mirrors the API's recorded InciWeb snapshot (2026-09-03):
+ * cleaned "Incident Overview" prose plus the parsed last-updated date. */
+const NARRATIVE_SUMMARY =
+  'The North Cayuse Fire is located on the Umatilla National Forest, ' +
+  'approximately 12 miles east of Pilot Rock. Crews are mopping up along the ' +
+  'perimeter and restoration work has begun.'
+
+export function makeNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'ok',
+    data: [
+      {
+        source: 'inciweb',
+        sourceUrl: INCIWEB_SOURCE_URL,
+        fetchedAt: now,
+        incidentId: recordedIncidents[0].incidentId,
+        inciwebId: 'OR973S',
+        title: 'OR973S North Cayuse',
+        summary: NARRATIVE_SUMMARY,
+        lastUpdated: '2026-09-03',
+        link: 'https://inciweb.wildfire.gov/incident-information/or973s-north-cayuse',
+      },
+    ],
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+/** The incident is not on InciWeb — the detail panel links the official page. */
+export function makeEmptyNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'ok',
+    data: [],
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+/** The narrative feed failed with no last-good copy. */
+export function makeFailedNarrativeEnvelope(now: number): FeedResult<IncidentNarrative> {
+  return {
+    status: 'failed',
+    data: null,
+    error: 'InciWeb feed unavailable',
+    meta: { source: 'inciweb', sourceUrl: INCIWEB_SOURCE_URL, fetchedAt: now },
+  }
+}
+
+
+// --- Air quality (surface 3) — mirrors the API's Open-Meteo reference cities ---
+
+/** One Open-Meteo reading; values are the API's recorded fixture snapshot. */
+function aqiReading(location: string, usAqi: number, fetchedAt: number): AirReading {
+  const categoryLabel = usAqi <= 50 ? 'Good' : usAqi <= 100 ? 'Moderate' : 'Unhealthy for Sensitive Groups'
+  return {
+    location,
+    usAqi,
+    categoryLabel,
+    source: 'open-meteo',
+    sourceUrl: OPENMETEO_SOURCE_URL,
+    fetchedAt,
+  }
+}
+
+/** The eight reference cities — six urban, two rural (Pendleton, La Grande). */
+export function makeAqiCitiesEnvelope(
+  now: number,
+  status: 'ok' | 'failed' = 'ok',
+): FeedResult<AirReading> {
+  return {
+    status,
+    data:
+      status === 'failed'
+        ? null
+        : [
+            aqiReading('Portland', 54, now),
+            aqiReading('Salem', 38, now),
+            aqiReading('Eugene', 61, now),
+            aqiReading('Bend', 27, now),
+            aqiReading('Medford', 73, now),
+            aqiReading('Pendleton', 41, now),
+            aqiReading('Klamath Falls', 88, now),
+            aqiReading('La Grande', 33, now),
+          ],
+    meta: { source: 'open-meteo', sourceUrl: OPENMETEO_SOURCE_URL, fetchedAt: now },
+    error: status === 'failed' ? 'Open-Meteo unavailable' : null,
+  }
+}
+
+/** The user-location reading served for the geolocation point query. */
+export function makeAqiPointEnvelope(now: number): FeedResult<AirReading> {
+  return {
+    status: 'ok',
+    data: [aqiReading('Your location', 45, now)],
+    meta: { source: 'open-meteo', sourceUrl: OPENMETEO_SOURCE_URL, fetchedAt: now },
   }
 }

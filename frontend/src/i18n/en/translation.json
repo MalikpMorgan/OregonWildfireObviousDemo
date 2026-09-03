@@ -2,7 +2,6 @@
   "app": {
     "title": "Oregon Fire & Air",
     "tagline": "Wildfire, smoke, and relief information for Oregon — plain-language, bilingual, and sourced.",
-    "comingSoon": "The live map, incident detail, and air quality surfaces are coming in upcoming releases.",
     "languageLabel": "Language",
     "skipToMain": "Skip to main content"
   },
@@ -20,8 +19,6 @@
     "listEmpty": "No active incidents reported right now.",
     "listCaption": "Use the up and down arrow keys to move between incidents. Press Enter to select one.",
     "listCount": "{{count}} active incidents",
-    "selectedHeading": "Selected incident",
-    "detailPlaceholder": "The full incident detail view arrives in the next release.",
     "noSelection": "Select an incident from the list or the map to see its details.",
     "county": "County",
     "acres": "Acres",
@@ -55,6 +52,40 @@
     "legendGibsNote": "Optional satellite layer, off by default.",
     "gibsToggleLabel": "Satellite hotspot layer (NASA GIBS)",
     "openOfficialPage": "Open the official NWS alert page"
+  },
+  "detail": {
+    "heading": "Incident details",
+    "containmentValue": "{{pct}}% contained",
+    "narrativeHeading": "About this fire",
+    "narrativeLoading": "Looking up the official incident narrative…",
+    "narrativeMissing": "This incident has no official narrative on InciWeb yet.",
+    "narrativeFailed": "The incident narrative feed is unavailable right now.",
+    "narrativeLastUpdated": "Narrative last updated {{date}}",
+    "readNarrative": "Read more on InciWeb",
+    "officialFallback": "Open the official incident page on InciWeb",
+    "sourceAttribution": "Source: NIFC WFIGS, {{age}}",
+    "narrativeSourceAttribution": "Source: InciWeb, {{age}}"
+  },
+  "air": {
+    "title": "Air quality",
+    "intro": "US AQI values are model estimates for each community — for authoritative monitor readings, use the official links below.",
+    "loading": "Loading air quality data…",
+    "failed": "The air quality feed is unavailable right now.",
+    "stale": "Showing the last good data.",
+    "modelEstimate": "Model estimate",
+    "usAqiLabel": "US AQI",
+    "notReported": "Not reported",
+    "yourLocation": "Your location",
+    "locating": "Detecting your location…",
+    "reading": "Reading the air quality at your location…",
+    "pointFailed": "Your location's reading is unavailable right now.",
+    "geoDenied": "Location sharing is off. Showing Oregon reference cities instead — pick the one closest to you.",
+    "geoUnavailable": "Your location couldn't be detected. Showing Oregon reference cities instead.",
+    "geoUnsupported": "This browser can't detect location. Showing Oregon reference cities instead.",
+    "useMyLocation": "Use my location",
+    "citiesHeading": "Oregon reference cities",
+    "sourceLine": "Source: Open-Meteo, {{age}}",
+    "officialContext": "Official monitor data and county smoke advisories:"
   },
   "evacuation": {
     "title": "Evacuation levels",

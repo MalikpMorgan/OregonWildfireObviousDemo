@@ -11,6 +11,7 @@ import { getAlerts, getFires, getPerimeters } from '../api/client'
 import { GIBS_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL } from '../api/sources'
 import type { SourceMeta } from '../api/types'
 import MapView from './MapView'
+import IncidentDetail from '../detail/IncidentDetail'
 import { GIBS_FEATURE_FLAG } from './featureFlags'
 import IncidentList from './IncidentList'
 import Legend from './Legend'
@@ -175,14 +176,8 @@ export default function MapSurface({ onSelectIncident }: MapSurfaceProps = {}) {
               countyNotReported: t('map.countyNotReported'),
             }}
           />
-          {/* Placeholder detail slot — the full incident detail view is the
-              next lane; it consumes onSelectIncident. */}
           {selectedIncident ? (
-            <section className="map-surface__detail" data-testid="detail-slot">
-              <h3>{t('map.selectedHeading')}</h3>
-              <p className="map-surface__detail-name">{selectedIncident.name}</p>
-              <p className="map-surface__detail-note">{t('map.detailPlaceholder')}</p>
-            </section>
+            <IncidentDetail incident={selectedIncident} />
           ) : (
             <p className="map-surface__no-selection">{t('map.noSelection')}</p>
           )}

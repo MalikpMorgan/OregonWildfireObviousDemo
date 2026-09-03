@@ -1,7 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { makeAlertsEnvelope, makeFiresEnvelope, makePerimetersEnvelope } from './api/fixtures'
+import {
+  makeAqiCitiesEnvelope,
+  makeAqiPointEnvelope,
+  makeAlertsEnvelope,
+  makeEmptyNarrativeEnvelope,
+  makeFiresEnvelope,
+  makePerimetersEnvelope,
+} from './api/fixtures'
 import App from './App'
 import i18n from './i18n'
 // Typed access to the in-memory double jsdom runs against.
@@ -14,6 +21,11 @@ vi.mock('./api/client', () => ({
   getFires: () => Promise.resolve(makeFiresEnvelope(now)),
   getPerimeters: () => Promise.resolve(makePerimetersEnvelope(now)),
   getAlerts: () => Promise.resolve(makeAlertsEnvelope(now)),
+  // The air-quality panel sits beside the map on the primary tab; jsdom has no
+  // geolocation, so only the reference-cities feed is exercised here.
+  getAqiReference: () => Promise.resolve(makeAqiCitiesEnvelope(now)),
+  getAqiAt: () => Promise.resolve(makeAqiPointEnvelope(now)),
+  getNarrative: () => Promise.resolve(makeEmptyNarrativeEnvelope(now)),
 }))
 
 beforeEach(() => {
