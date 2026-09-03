@@ -9,9 +9,10 @@ describe('i18n setup', () => {
     expect(i18n.options.fallbackLng).toEqual(['en'])
   })
 
-  it('ships empty en/es translation namespaces', () => {
+  it('ships populated en/es translation namespaces (coverage test guards parity)', () => {
     for (const language of supportedLanguages) {
-      expect(i18n.getResourceBundle(language, 'translation')).toEqual({})
+      const bundle = i18n.getResourceBundle(language, 'translation')
+      expect(Object.keys(bundle).length).toBeGreaterThan(0)
     }
   })
 })
