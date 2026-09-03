@@ -21,6 +21,7 @@
     "listCaption": "Use las flechas arriba y abajo para moverse entre los incidentes. Presione Enter para seleccionar uno.",
     "listCount": "{{count}} incidentes activos",
     "selectedHeading": "Incidente seleccionado",
+    "detailPlaceholder": "La vista completa de detalles del incidente llegará en la próxima versión.",
     "noSelection": "Seleccione un incidente en la lista o en el mapa para ver sus detalles.",
     "county": "Condado",
     "acres": "Acres",

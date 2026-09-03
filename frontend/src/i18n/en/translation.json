@@ -21,6 +21,7 @@
     "listCaption": "Use the up and down arrow keys to move between incidents. Press Enter to select one.",
     "listCount": "{{count}} active incidents",
     "selectedHeading": "Selected incident",
+    "detailPlaceholder": "The full incident detail view arrives in the next release.",
     "noSelection": "Select an incident from the list or the map to see its details.",
     "county": "County",
     "acres": "Acres",

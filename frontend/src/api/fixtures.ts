@@ -5,10 +5,10 @@
  * serve for those inputs. Keep values in sync with the recorded files.
  */
 
+import { NWS_SOURCE_URL, WFIGS_SOURCE_URL } from './sources'
 import type { FeedResult, FireAlert, FireIncident, FirePerimeter } from './types'
 
-export const WFIGS_SOURCE_URL = 'https://data-nifc.opendata.arcgis.com/'
-export const NWS_SOURCE_URL = 'https://api.weather.gov/alerts/active?area=OR'
+export { NWS_SOURCE_URL, WFIGS_SOURCE_URL }
 
 export const recordedIncidents: FireIncident[] = [
   {
