@@ -14,6 +14,7 @@ import type { FeedResult, FireIncident, IncidentNarrative } from '../api/types'
 import { failedEnvelope } from '../map/useFeed'
 import { feedAge } from '../map/legend'
 import { formatAcres, formatFeedUpdate } from '../map/format'
+import { StaleNotice } from '../state/FeedStates'
 
 type NarrativeState =
   | { kind: 'loading' }
@@ -92,6 +93,12 @@ export default function IncidentDetail({ incident }: { incident: FireIncident })
       ) : narrativeRecord ? (
         <div className="incident-detail__narrative">
           <h4>{t('detail.narrativeHeading')}</h4>
+          {narrative.kind === 'loaded' && narrative.result.status === 'stale' ? (
+            <StaleNotice
+              ageLabel={ageLabel(narrative.result.meta.fetchedAt)}
+              note={t('state.staleNote')}
+            />
+          ) : null}
           <p className="incident-detail__summary">{narrativeRecord.summary}</p>
           {narrativeRecord.lastUpdated ? (
             <p className="incident-detail__meta">

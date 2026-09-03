@@ -3,7 +3,12 @@
     "title": "Oregon Fire & Air",
     "tagline": "Wildfire, smoke, and relief information for Oregon — plain-language, bilingual, and sourced.",
     "languageLabel": "Language",
-    "skipToMain": "Skip to main content"
+    "skipToMain": "Skip to main content",
+    "offlineTitle": "You're offline",
+    "offlineBody": "Live fire and air data can't refresh without a connection. The evacuation guidance and relief directory on the other tabs still work from this page."
+  },
+  "state": {
+    "staleNote": "Showing the last good data saved for this feed."
   },
   "nav": {
     "map": "Fire map",
@@ -15,9 +20,13 @@
     "title": "Live fire map",
     "intro": "Active wildfire incidents and fire weather alerts for Oregon, from official federal feeds. Select an incident in the list or on the map — both views stay in sync.",
     "loading": "Loading live fire data…",
+    "loadingIncidents": "Loading incident points from NIFC WFIGS…",
+    "loadingPerimeters": "Loading perimeter polygons from NIFC WFIGS…",
+    "loadingAlerts": "Loading fire weather alerts from NWS…",
     "listHeading": "Active incidents",
-    "listEmpty": "No active incidents reported right now.",
     "listCaption": "Use the up and down arrow keys to move between incidents. Press Enter to select one.",
+    "emptyAsOf": "No active incidents reported as of {{date}}.",
+    "emptySourcesLabel": "Check official sources:",
     "listCount": "{{count}} active incidents",
     "noSelection": "Select an incident from the list or the map to see its details.",
     "county": "County",
@@ -69,9 +78,9 @@
   "air": {
     "title": "Air quality",
     "intro": "US AQI values are model estimates for each community — for authoritative monitor readings, use the official links below.",
-    "loading": "Loading air quality data…",
+    "loading": "Loading air quality data from Open-Meteo…",
     "failed": "The air quality feed is unavailable right now.",
-    "stale": "Showing the last good data.",
+    "empty": "No air-quality readings are available right now.",
     "modelEstimate": "Model estimate",
     "usAqiLabel": "US AQI",
     "notReported": "Not reported",

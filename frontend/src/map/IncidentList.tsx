@@ -11,7 +11,6 @@ import type { FireIncident } from '../api/types'
 export interface IncidentListLabels {
   heading: string
   count: string
-  empty: string
   caption: string
   countyNotReported: string
 }
@@ -101,9 +100,7 @@ export default function IncidentList({
     <section className="incident-list" aria-labelledby={listHeadingId}>
       <h3 id={listHeadingId}>{labels.heading}</h3>
       <p className="incident-list__count">{labels.count}</p>
-      {incidents.length === 0 ? (
-        <p className="incident-list__empty">{labels.empty}</p>
-      ) : (
+      {incidents.length > 0 && (
         <>
           <p className="incident-list__caption">{labels.caption}</p>
           <ul

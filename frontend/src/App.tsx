@@ -5,6 +5,7 @@ import MapSurface from './map/MapSurface'
 import AirQualityPanel from './air/AirQualityPanel'
 import EvacuationPage from './pages/EvacuationPage'
 import ReliefPage from './pages/ReliefPage'
+import OfflineBanner from './state/OfflineBanner'
 
 // The live fire map is the dashboard's primary surface; evacuation and relief
 // remain sibling tabs.
@@ -63,6 +64,8 @@ function App() {
           </div>
         </div>
       </header>
+      {/* Offline shell: says what still works and keeps 2-1-1 one tap away. */}
+      <OfflineBanner />
       <div
         role="tablist"
         aria-label={t('nav.label')}

@@ -14,10 +14,12 @@ import {
 import type {
   AirReading,
   FeedResult,
+  FeedStatus,
   FireAlert,
   FireIncident,
   FirePerimeter,
   IncidentNarrative,
+  SourceMeta,
 } from './types'
 
 export { INCIWEB_SOURCE_URL, NWS_SOURCE_URL, OPENMETEO_SOURCE_URL, WFIGS_SOURCE_URL }
@@ -376,4 +378,18 @@ export function makeAqiPointEnvelope(now: number): FeedResult<AirReading> {
     data: [aqiReading('Your location', 45, now)],
     meta: { source: 'open-meteo', sourceUrl: OPENMETEO_SOURCE_URL, fetchedAt: now },
   }
+}
+
+
+// --- Envelope factory for the state-matrix tests (spec §Behavior & states) ---
+// Builds any envelope status around real fixture rows so component tests can
+// drive every state a feed can present without inventing new content.
+
+export function makeEnvelope<T>(
+  status: FeedStatus,
+  data: T[] | null,
+  meta: SourceMeta,
+  error: string | null = null,
+): FeedResult<T> {
+  return { status, data, meta, error }
 }

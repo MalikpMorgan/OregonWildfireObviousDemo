@@ -1,8 +1,11 @@
 /**
  * Surface 1 composition: the live map, the permanent legend, and the synced
- * keyboard-navigable incident list, plus a placeholder detail slot (the full
- * detail view is the next lane). Owns the shared selection state both
- * directions target and exposes it via onSelectIncident.
+ * keyboard-navigable incident list, plus the incident detail slot. Each feed
+ * renders its own envelope state (spec §Behavior & states): a skeleton naming
+ * the source while loading, live data with an "updated X ago" stamp, last-good
+ * data with a stale badge, a plain error with the official fallback link when
+ * failed, and a dated empty state — a failed feed never blanks the panel or
+ * takes down the others.
  */
 
 import { useCallback, useMemo, useState } from 'react'
@@ -10,6 +13,9 @@ import { useTranslation } from 'react-i18next'
 import { getAlerts, getFires, getPerimeters } from '../api/client'
 import { GIBS_SOURCE_URL, NWS_SOURCE_URL, WFIGS_SOURCE_URL } from '../api/sources'
 import type { SourceMeta } from '../api/types'
+import { envelopeView } from '../state/envelopeView'
+import type { EnvelopeView } from '../state/envelopeView'
+import { FailedNotice, FeedSkeleton, StaleNotice } from '../state/FeedStates'
 import MapView from './MapView'
 import IncidentDetail from '../detail/IncidentDetail'
 import { GIBS_FEATURE_FLAG } from './featureFlags'
@@ -31,8 +37,28 @@ export interface MapSurfaceProps {
   onSelectIncident?: (incidentId: string | null) => void
 }
 
-export default function MapSurface({ onSelectIncident }: MapSurfaceProps = {}) {
+/** The dated healthy-empty state: report date plus the official sources. */
+function EmptyIncidents({ asOf }: { asOf: string }) {
   const { t } = useTranslation()
+  return (
+    <div className="feed-state feed-state--empty" role="status" data-testid="incidents-empty">
+      <p className="feed-state__title">{t('map.emptyAsOf', { date: asOf })}</p>
+      <p className="feed-state__meta">
+        {t('map.emptySourcesLabel')}{' '}
+        <a href={WFIGS_SOURCE_URL} target="_blank" rel="noopener noreferrer">
+          {t('map.fallbackWfigs')}
+        </a>
+        {' · '}
+        <a href={NWS_SOURCE_URL} target="_blank" rel="noopener noreferrer">
+          {t('map.fallbackNws')}
+        </a>
+      </p>
+    </div>
+  )
+}
+
+export default function MapSurface({ onSelectIncident }: MapSurfaceProps = {}) {
+  const { t, i18n } = useTranslation()
   const fires = useFeed(getFires, WFIGS_FALLBACK_META)
   const perimeters = useFeed(getPerimeters, WFIGS_FALLBACK_META)
   const alerts = useFeed(getAlerts, NWS_FALLBACK_META)
@@ -56,8 +82,22 @@ export default function MapSurface({ onSelectIncident }: MapSurfaceProps = {}) {
     onSelectIncident?.(null)
   }, [onSelectIncident])
 
-  const allLoaded =
-    fires.kind === 'loaded' && perimeters.kind === 'loaded' && alerts.kind === 'loaded'
+  // Per-source envelope views — the §Behavior & states matrix for the side panel.
+  const now = Date.now()
+  const firesView = fires.kind === 'loaded' ? envelopeView(fires.result, now) : null
+  const perimetersView = perimeters.kind === 'loaded' ? envelopeView(perimeters.result, now) : null
+  const alertsView = alerts.kind === 'loaded' ? envelopeView(alerts.result, now) : null
+
+  const ageLabel = (view: EnvelopeView): string | null => {
+    if (!view.age) return null
+    return t(view.age.key, view.age.count !== undefined ? { count: view.age.count } : undefined)
+  }
+  const stampLabel = (view: EnvelopeView): string | null => {
+    const age = ageLabel(view)
+    return age ? t('map.legendDataAge', { age }) : null
+  }
+  const longDate = (ms: number): string =>
+    new Intl.DateTimeFormat(i18n.language === 'es' ? 'es' : 'en', { dateStyle: 'long' }).format(ms)
 
   // Legend rows: one per layer with source, status, and data age. Computed per
   // render — the clock only needs to be right to the minute.
@@ -160,22 +200,74 @@ export default function MapSurface({ onSelectIncident }: MapSurfaceProps = {}) {
           />
         </div>
         <div className="map-surface__side">
-          {!allLoaded && <p className="map-surface__loading">{t('map.loading')}</p>}
           <Legend layers={legendLayers} heading={t('map.legendHeading')} />
-          <IncidentList
-            incidents={incidents}
-            selectedId={selectedId}
-            onSelect={handleSelect}
-            onDeselect={handleDeselect}
-            listHeadingId="incident-list-heading"
-            labels={{
-              heading: t('map.listHeading'),
-              count: t('map.listCount', { count: incidents.length }),
-              empty: t('map.listEmpty'),
-              caption: t('map.listCaption'),
-              countyNotReported: t('map.countyNotReported'),
-            }}
-          />
+
+          {/* Named skeletons — each source resolves independently. */}
+          {fires.kind === 'loading' && <FeedSkeleton label={t('map.loadingIncidents')} />}
+          {perimeters.kind === 'loading' && <FeedSkeleton label={t('map.loadingPerimeters')} />}
+          {alerts.kind === 'loading' && <FeedSkeleton label={t('map.loadingAlerts')} />}
+
+          {/* Perimeters are map-only: a failure degrades to a note, the map stays up. */}
+          {perimetersView?.kind === 'failed' && (
+            <FailedNotice
+              message={t('map.perimetersFailed')}
+              linkLabel={t('map.fallbackWfigs')}
+              linkHref={WFIGS_SOURCE_URL}
+            />
+          )}
+
+          {/* Alert feed states — the alerts themselves render as map overlays. */}
+          {alertsView?.kind === 'failed' && alerts.kind === 'loaded' && (
+            <FailedNotice
+              message={t('map.alertsFailed')}
+              linkLabel={t('map.fallbackNws')}
+              linkHref={NWS_SOURCE_URL}
+            />
+          )}
+          {alertsView?.kind === 'stale' && alerts.kind === 'loaded' && (
+            <StaleNotice ageLabel={ageLabel(alertsView) ?? ''} note={t('state.staleNote')} />
+          )}
+          {alertsView?.kind === 'empty' && (
+            <p className="feed-state__stamp" role="status">
+              {t('map.alertsEmpty')}
+            </p>
+          )}
+
+          {/* Incident feed states — the list never fakes emptiness or failure. */}
+          {firesView?.kind === 'failed' && fires.kind === 'loaded' && (
+            <FailedNotice
+              message={t('map.firesFailed')}
+              linkLabel={t('map.fallbackWfigs')}
+              linkHref={WFIGS_SOURCE_URL}
+            />
+          )}
+          {firesView?.kind === 'empty' && fires.kind === 'loaded' && (
+            <EmptyIncidents asOf={longDate(fires.result.meta.fetchedAt)} />
+          )}
+          {firesView &&
+            fires.kind === 'loaded' &&
+            (firesView.kind === 'ready' || firesView.kind === 'stale') && (
+              <>
+                {firesView.kind === 'stale' ? (
+                  <StaleNotice ageLabel={ageLabel(firesView) ?? ''} note={t('state.staleNote')} />
+                ) : (
+                  <p className="feed-state__stamp">{stampLabel(firesView)}</p>
+                )}
+                <IncidentList
+                  incidents={incidents}
+                  selectedId={selectedId}
+                  onSelect={handleSelect}
+                  onDeselect={handleDeselect}
+                  listHeadingId="incident-list-heading"
+                  labels={{
+                    heading: t('map.listHeading'),
+                    count: t('map.listCount', { count: incidents.length }),
+                    caption: t('map.listCaption'),
+                    countyNotReported: t('map.countyNotReported'),
+                  }}
+                />
+              </>
+            )}
           {selectedIncident ? (
             <IncidentDetail incident={selectedIncident} />
           ) : (

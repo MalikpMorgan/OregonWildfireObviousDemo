@@ -3,8 +3,10 @@
  * permission-gated) plus Oregon reference cities including rural communities.
  * Every reading shows the number, a text category (never color-only), a "model
  * estimate" label, and source attribution with timestamps; official monitor
- * context links (Oregon DEQ, OregonSmoke) render in every state. Denying
- * geolocation degrades cleanly to the reference cities — the panel never blanks.
+ * context links (Oregon DEQ, OregonSmoke) render in every state. Each envelope
+ * status renders its own state — named loading skeleton, live readings with the
+ * source line, stale badge, failed notice, or the empty note — and denying
+ * geolocation degrades cleanly to the reference cities. The panel never blanks.
  */
 
 import { useCallback, useEffect, useState } from 'react'
@@ -14,6 +16,8 @@ import { OREGON_DEQ_AQI_URL, OREGON_SMOKE_URL, OPENMETEO_SOURCE_URL } from '../a
 import type { AirReading, FeedResult } from '../api/types'
 import { failedEnvelope, useFeed } from '../map/useFeed'
 import { feedAge } from '../map/legend'
+import { envelopeView } from '../state/envelopeView'
+import { FailedNotice, FeedSkeleton, StaleNotice } from '../state/FeedStates'
 
 // Attribution meta for a failed fetch — no feed time to show.
 const OPENMETEO_FALLBACK_META = {
@@ -106,9 +110,15 @@ export default function AirQualityPanel() {
     return t(age.key, age.count !== undefined ? { count: age.count } : undefined)
   }
 
+  const now = Date.now()
+  const citiesView = cities.kind === 'loaded' ? envelopeView(cities.result, now) : null
   const cityReadings = cities.kind === 'loaded' ? (cities.result.data ?? []) : []
   const pointReading = point.kind === 'loaded' && point.result.data?.length ? point.result.data[0] : null
   const pointFailed = point.kind === 'loaded' && pointReading === null
+  const pointStaleAge =
+    point.kind === 'loaded' && pointReading !== null && point.result.status === 'stale'
+      ? ageLabel(point.result.meta.fetchedAt)
+      : null
 
   const geoNote: string | null =
     geoPhase === 'denied'
@@ -144,9 +154,14 @@ export default function AirQualityPanel() {
           {t('air.reading')}
         </p>
       ) : pointReading ? (
-        <ul className="aqi-panel__grid aqi-panel__grid--single">
-          <AirCard reading={pointReading} locationLabel={t('air.yourLocation')} />
-        </ul>
+        <>
+          {pointStaleAge ? (
+            <StaleNotice ageLabel={pointStaleAge} note={t('state.staleNote')} />
+          ) : null}
+          <ul className="aqi-panel__grid aqi-panel__grid--single">
+            <AirCard reading={pointReading} locationLabel={t('air.yourLocation')} />
+          </ul>
+        </>
       ) : pointFailed ? (
         <p className="aqi-panel__note" role="alert">
           {t('air.pointFailed')}
@@ -155,15 +170,20 @@ export default function AirQualityPanel() {
 
       <h3>{t('air.citiesHeading')}</h3>
       {cities.kind === 'loading' ? (
+        <FeedSkeleton label={t('air.loading')} />
+      ) : citiesView?.kind === 'failed' ? (
+        <FailedNotice message={t('air.failed')} />
+      ) : citiesView?.kind === 'empty' ? (
         <p className="aqi-panel__note" role="status">
-          {t('air.loading')}
+          {t('air.empty')}
         </p>
-      ) : cityReadings.length > 0 ? (
+      ) : (
         <>
-          {cities.result.status === 'stale' ? (
-            <p className="aqi-panel__note" role="status">
-              {t('air.stale')}
-            </p>
+          {citiesView?.kind === 'stale' && cities.kind === 'loaded' ? (
+            <StaleNotice
+              ageLabel={ageLabel(cities.result.meta.fetchedAt)}
+              note={t('state.staleNote')}
+            />
           ) : null}
           <ul className="aqi-panel__grid">
             {cityReadings.map((reading) => (
@@ -171,10 +191,6 @@ export default function AirQualityPanel() {
             ))}
           </ul>
         </>
-      ) : (
-        <p className="aqi-panel__note" role="alert">
-          {t('air.failed')}
-        </p>
       )}
 
       {cities.kind === 'loaded' && cities.result.status !== 'failed' ? (
