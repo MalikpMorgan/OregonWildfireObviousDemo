@@ -1,0 +1,83 @@
+[
+  {
+    "id": "211info",
+    "category": "assistance",
+    "name": "211info",
+    "url": "https://www.211info.org",
+    "phone": "211",
+    "lastReviewed": "2026-09-03",
+    "sources": ["211info"]
+  },
+  {
+    "id": "red-cross-region",
+    "category": "shelter",
+    "name": "American Red Cross — Cascades Region",
+    "url": "https://www.redcross.org/local/oregon.html",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["American Red Cross — Cascades Region"]
+  },
+  {
+    "id": "red-cross-shelter-finder",
+    "category": "shelter",
+    "name": "Red Cross open shelter map",
+    "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["American Red Cross shelter finder"]
+  },
+  {
+    "id": "oregon-oem",
+    "category": "information",
+    "name": "Oregon Emergency Management (ODEM)",
+    "url": "https://www.oregon.gov/oem",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["Oregon Department of Emergency Management"]
+  },
+  {
+    "id": "oregon-wildfire-portal",
+    "category": "information",
+    "name": "Oregon Wildfire — evacuations & levels",
+    "url": "https://wildfire.oregon.gov/pages/evacuations.aspx",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["State of Oregon wildfire portal"]
+  },
+  {
+    "id": "fema-disaster-assistance",
+    "category": "assistance",
+    "name": "DisasterAssistance.gov",
+    "url": "https://www.disasterassistance.gov/",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["FEMA Disaster Assistance Improvement Program"]
+  },
+  {
+    "id": "osfm-maps",
+    "category": "information",
+    "name": "Oregon State Fire Marshal — fire maps",
+    "url": "https://osfminfo.org/maps/",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["Oregon State Fire Marshal"]
+  },
+  {
+    "id": "odf-restrictions",
+    "category": "restrictions",
+    "name": "ODF fire restrictions & closures",
+    "url": "https://www.oregon.gov/odf/fire/Pages/restrictions.aspx",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["Oregon Department of Forestry"]
+  },
+  {
+    "id": "odf-restrictions-map",
+    "category": "restrictions",
+    "name": "ODF public restrictions map",
+    "url": "https://gisapps.odf.oregon.gov/firerestrictions/pfr.html",
+    "phone": null,
+    "lastReviewed": "2026-09-03",
+    "sources": ["Oregon Department of Forestry"]
+  }
+]
