@@ -1,7 +1,8 @@
 # API — Oregon Fire & Air Dashboard
 
 FastAPI service (Python 3.12+) that aggregates public fire, weather, and air-quality feeds
-for the SPA. Every route serves the same envelope and a failing upstream never 500s.
+for the SPA. Every route serves the same envelope and a failing upstream never 500s. With
+`SPA_DIST_DIR` set it also serves the built SPA at `/` — one origin for the whole app.
 
 ## Envelope contract
 
@@ -47,6 +48,21 @@ contract. Geolocation AQI points use a small FIFO cache (512 entries).
 - `CORS_ORIGINS` — comma-separated allowed origins (default: Vite dev server).
 - `FEED_TIMEOUT_SECONDS` — upstream HTTP timeout (default 15s).
 - `FEED_TTL_<NAME>_SECONDS` — per-feed cache TTL overrides.
+- `SPA_DIST_DIR` — path to a built frontend (`index.html` + `assets/`); when set, the app
+  serves the SPA at `/` so one process hosts both tiers (single-origin preview).
+
+## Serving the SPA (single origin)
+
+Build the frontend, then point the API at the output:
+
+```bash
+cd frontend && npm ci && npm run build
+cd ../api && SPA_DIST_DIR=../frontend/dist uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+One origin serves the dashboard and `/api/*`; the SPA's same-origin fetches need no CORS.
+When `SPA_DIST_DIR` is unset the service is API-only (`/` 404s), and a configured path
+missing `index.html` fails startup loudly instead of silently demoting the deployment.
 
 ## Tests
 

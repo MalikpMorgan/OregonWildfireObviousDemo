@@ -2,6 +2,7 @@
 
 import logging
 import os
+from pathlib import Path
 
 # The Vite dev server is the default SPA origin during local development.
 DEFAULT_CORS_ORIGINS = ("http://localhost:5173",)
@@ -51,3 +52,19 @@ def feed_timeout_seconds(env: dict[str, str] | None = None) -> float:
     source = os.environ if env is None else env
     raw = source.get("FEED_TIMEOUT_SECONDS", "").strip()
     return _env_number(raw, DEFAULT_FEED_TIMEOUT_SECONDS) if raw else DEFAULT_FEED_TIMEOUT_SECONDS
+
+
+def spa_dist_dir(env: dict[str, str] | None = None) -> Path | None:
+    """Resolve SPA_DIST_DIR — a built frontend to serve at / (single-origin hosting).
+
+    A configured directory is validated eagerly: a typo'd path must fail startup
+    loudly, not silently demote the deployment to API-only.
+    """
+    source = os.environ if env is None else env
+    raw = source.get("SPA_DIST_DIR", "").strip()
+    if not raw:
+        return None
+    candidate = Path(raw)
+    if not (candidate / "index.html").is_file():
+        raise RuntimeError(f"SPA_DIST_DIR={raw!r} does not contain index.html")
+    return candidate

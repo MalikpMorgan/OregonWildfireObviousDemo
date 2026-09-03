@@ -13,6 +13,14 @@ later PRs (see the V1 specification).
 - `npm test` — Vitest (Testing Library + axe), single run for CI
 - `npm run test:watch` — Vitest in watch mode
 
+## API base
+
+The client calls the API same-origin by default (`/api/...`): the FastAPI service serves
+the built SPA for hosted previews (`SPA_DIST_DIR`, see `api/README.md`), and the Vite dev
+server proxies `/api` and `/healthz` to `localhost:8000` in development. Set
+`VITE_API_BASE_URL` to target a split-origin API instead.
+
+
 ## i18n
 
 `react-i18next` is initialized in `src/i18n` with empty `en` and `es` translation namespaces.

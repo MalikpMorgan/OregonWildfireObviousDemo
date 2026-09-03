@@ -14,7 +14,10 @@ import type {
   IncidentNarrative,
 } from './types'
 
-const API_BASE: string = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'
+// Same-origin by default: the API serves the built SPA in hosted deployments, and the
+// Vite dev server proxies /api and /healthz in local development. VITE_API_BASE_URL
+// overrides for split-origin deployments.
+const API_BASE: string = import.meta.env.VITE_API_BASE_URL ?? ''
 
 export type FeedFetcher<T> = () => Promise<FeedResult<T>>
 

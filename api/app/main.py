@@ -8,9 +8,10 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from app.config import cors_origins
+from app.config import cors_origins, spa_dist_dir
 from app.feeds import close_http_client
 from app.routes import router
 
@@ -47,6 +48,13 @@ def create_app() -> FastAPI:
     async def healthz() -> HealthResponse:
         """Liveness probe used by hosting and CI."""
         return HealthResponse(status="ok")
+
+    # Single-origin hosting: when SPA_DIST_DIR names a built frontend, one process
+    # serves both tiers for the hosted preview. Mounted last so /api/* and /healthz
+    # routes match before the static catch-all.
+    spa_dir = spa_dist_dir()
+    if spa_dir is not None:
+        application.mount("/", StaticFiles(directory=spa_dir, html=True), name="spa")
 
     return application
 
