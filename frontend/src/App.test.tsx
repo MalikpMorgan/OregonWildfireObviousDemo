@@ -1,8 +1,25 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
-import { afterEach, describe, expect, it } from 'vitest'
-import i18n from './i18n'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { makeAlertsEnvelope, makeFiresEnvelope, makePerimetersEnvelope } from './api/fixtures'
 import App from './App'
+import i18n from './i18n'
+// Typed access to the in-memory double jsdom runs against.
+import { MockMap, MockPopup } from './test/maplibre-mock'
+
+vi.mock('maplibre-gl', async () => await import('./test/maplibre-mock'))
+
+const now = Date.now()
+vi.mock('./api/client', () => ({
+  getFires: () => Promise.resolve(makeFiresEnvelope(now)),
+  getPerimeters: () => Promise.resolve(makePerimetersEnvelope(now)),
+  getAlerts: () => Promise.resolve(makeAlertsEnvelope(now)),
+}))
+
+beforeEach(() => {
+  MockMap.instances.length = 0
+  MockPopup.instances.length = 0
+})
 
 afterEach(() => {
   // Language is global state on the shared i18n instance — reset between tests.
@@ -16,8 +33,18 @@ describe('App shell', () => {
     expect(screen.getByText(/wildfire, smoke, and relief information/i)).toBeInTheDocument()
   })
 
-  it('shows the evacuation surface by default with official levels and every county', () => {
+  it('shows the live fire map by default inside a main landmark', () => {
     render(<App />)
+    expect(screen.getByRole('tab', { name: 'Fire map', selected: true })).toBeInTheDocument()
+    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: 'Live fire map' })).toBeInTheDocument()
+    // The map view mounted and built its MapLibre instance.
+    expect(MockMap.instances.length).toBe(1)
+  })
+
+  it('shows the evacuation surface with official levels and every county', () => {
+    render(<App />)
+    fireEvent.click(screen.getByRole('tab', { name: 'Evacuation' }))
     expect(screen.getByRole('heading', { level: 2, name: 'Evacuation levels' })).toBeInTheDocument()
     for (const name of ['BE READY', 'BE SET', 'GO NOW!']) {
       expect(screen.getByRole('heading', { name: new RegExp(`– ${name}$`) })).toBeInTheDocument()
@@ -30,6 +57,7 @@ describe('App shell', () => {
 
   it('filters the county list from the search box', () => {
     render(<App />)
+    fireEvent.click(screen.getByRole('tab', { name: 'Evacuation' }))
     const search = screen.getByLabelText('Search counties')
     fireEvent.change(search, { target: { value: 'Jack' } })
     expect(screen.getByRole('heading', { name: 'Jackson County' })).toBeInTheDocument()
@@ -55,6 +83,9 @@ describe('App shell', () => {
   it('switches the interface to Spanish', () => {
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: 'ES' }))
+    // The map stays the active surface after the language switch; the evacuation
+    // tab must present its Spanish content when selected.
+    fireEvent.click(screen.getByRole('tab', { name: 'Evacuación' }))
     expect(
       screen.getByRole('heading', { level: 2, name: 'Niveles de evacuación' }),
     ).toBeInTheDocument()
@@ -63,10 +94,13 @@ describe('App shell', () => {
     expect(screen.getByRole('tab', { name: 'Ayuda y recursos' })).toBeInTheDocument()
   })
 
-  it('has no detectable axe accessibility violations on either surface', async () => {
+  it('has no detectable axe accessibility violations on any surface', async () => {
     const { container } = render(<App />)
+    // Map surface (the default).
     expect((await axe(container)).violations).toEqual([])
     fireEvent.click(screen.getByRole('tab', { name: 'Relief & help' }))
+    expect((await axe(container)).violations).toEqual([])
+    fireEvent.click(screen.getByRole('tab', { name: 'Evacuation' }))
     expect((await axe(container)).violations).toEqual([])
   })
 })

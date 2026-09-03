@@ -1,15 +1,18 @@
 import { useRef, useState } from 'react'
 import type { KeyboardEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import MapSurface from './map/MapSurface'
 import EvacuationPage from './pages/EvacuationPage'
 import ReliefPage from './pages/ReliefPage'
 
-const SURFACES = ['evacuation', 'relief'] as const
+// The live fire map is the dashboard's primary surface; evacuation and relief
+// remain sibling tabs.
+const SURFACES = ['map', 'evacuation', 'relief'] as const
 type SurfaceKey = (typeof SURFACES)[number]
 
 function App() {
   const { t, i18n } = useTranslation()
-  const [activeSurface, setActiveSurface] = useState<SurfaceKey>('evacuation')
+  const [activeSurface, setActiveSurface] = useState<SurfaceKey>('map')
   const tabRefs = useRef<Partial<Record<SurfaceKey, HTMLButtonElement | null>>>({})
 
   // ARIA tabs pattern: arrow keys move both selection and focus (roving tabindex).
@@ -86,8 +89,18 @@ function App() {
       </div>
       <main id="main-content">
         <div role="tabpanel" id={`panel-${activeSurface}`} aria-labelledby={`tab-${activeSurface}`}>
-          {activeSurface === 'evacuation' ? <EvacuationPage /> : <ReliefPage />}
-          <p className="app-shell__notice app-shell__notice--inline">{t('app.comingSoon')}</p>
+          {activeSurface === 'map' ? (
+            <MapSurface />
+          ) : activeSurface === 'evacuation' ? (
+            <EvacuationPage />
+          ) : (
+            <ReliefPage />
+          )}
+          {/* The notice still promises the detail and air-quality surfaces; it
+              would contradict the live map if shown on the map tab. */}
+          {activeSurface !== 'map' && (
+            <p className="app-shell__notice app-shell__notice--inline">{t('app.comingSoon')}</p>
+          )}
         </div>
       </main>
     </div>
